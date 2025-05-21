@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Mathematics Game</string>
+    <string name="home_title">Mathematics Game</string>
+    <string name="home_button_play">Play</string>
+    <string name="home_button_ranking">Game Ranking</string>
+    <string name="home_button_records">Your Records</string>
+    <string name="home_menu_settings">Settings</string>
+    <string name="home_menu_close">Close</string>
+    <string name="game_title">Question %1$d</string>
+    <string name="game_toolbar_exit">Exit to Home</string>
+    <string name="game_elapsed">%1$d sec.</string>
+    <string name="game_equation" translatable="false">%1$d %2$s %3$d = ?</string>
+    <string name="game_input_sum">Sum</string>
+    <string name="game_input_difference">Difference</string>
+    <string name="game_input_product">Product</string>
+    <string name="game_input_quotient">Quotient</string>
+    <string name="game_button_check">Check Answer</string>
+    <string name="game_button_next">Next Question</string>
+    <string name="game_exit_title">Confirm Exit?</string>
+    <string name="game_exit_message">The game was not completed. Are you sure you want to return back to home page?</string>
+    <string name="game_exit_yes">Yes</string>
+    <string name="game_exit_no">No</string>
+    <string name="ranking_title">Game Ranking</string>
+    <string name="ranking_toolbar_back">Back</string>
+    <string name="adapter_ranking_text_rank">%1$d.</string>
+    <string name="adapter_ranking_text_elapsed">%1$d sec.</string>
+</resources>

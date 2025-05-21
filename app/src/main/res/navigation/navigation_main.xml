@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="app.jasonhk.hkiit.mathsgame.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_settings"
+            app:destination="@id/fragment_settings" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_game"
+            app:destination="@id/fragment_game" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_ranking"
+            app:destination="@id/fragment_ranking" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_records"
+            app:destination="@id/fragment_records" />
+    </fragment>
+    <fragment android:id="@+id/fragment_settings" />
+    <fragment
+        android:id="@+id/fragment_game"
+        android:name="app.jasonhk.hkiit.mathsgame.ui.game.GameFragment"
+        android:label="Game"
+        tools:layout="@layout/fragment_game">
+        <action
+            android:id="@+id/action_fragment_game_self"
+            app:destination="@id/fragment_game"
+            app:popUpTo="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragment_game_to_fragment_result"
+            app:destination="@id/fragment_result"
+            app:popUpTo="@id/fragment_home" />
+        <argument
+            android:name="round"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <argument
+            android:name="duration"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_ranking"
+        android:name="app.jasonhk.hkiit.mathsgame.ui.ranking.RankingFragment"
+        android:label="Ranking"
+        tools:layout="@layout/fragment_ranking" />
+    <fragment android:id="@+id/fragment_records" />
+    <fragment android:id="@+id/fragment_result" >
+        <action
+            android:id="@+id/action_fragment_result_to_fragment_game"
+            app:destination="@id/fragment_game"
+            app:popUpTo="@id/fragment_home" />
+    </fragment>
+
+</navigation>
