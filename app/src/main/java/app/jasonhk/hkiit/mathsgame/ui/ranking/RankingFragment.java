@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.view.ViewGroup.MarginLayoutParams;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -31,10 +33,11 @@ public class RankingFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) ->
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragment_ranking_toolbar_wrapper), (v, windowInsets) ->
         {
-            var bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(insets.left, 0, insets.right, 0);
+            ((MarginLayoutParams) v.getLayoutParams()).topMargin = insets.top; // Fix the stupid edge-to-edge bug with CollapsingToolbarLayout.
             return WindowInsetsCompat.CONSUMED;
         });
 
@@ -52,12 +55,18 @@ public class RankingFragment extends Fragment
         ranking.add(new RankingItem("E", 5, 5));
         ranking.add(new RankingItem("F", 5, 5));
 
-        var adapter = new RankingAdapter(requireContext(), ranking);
+        var adapter = new RankingAdapter(ranking);
 
-        ListView list = view.findViewById(R.id.fragment_ranking_list_ranking);
+        RecyclerView list = view.findViewById(R.id.fragment_ranking_list_ranking);
+        list.setLayoutManager(new LinearLayoutManager(requireContext()));
         list.setAdapter(adapter);
 
-//
+        ViewCompat.setOnApplyWindowInsetsListener(list, (v, windowInsets) ->
+        {
+            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(insets.left, 0, insets.right, insets.bottom + insets.top);
+            return windowInsets;
+        });
     }
 
     @Override

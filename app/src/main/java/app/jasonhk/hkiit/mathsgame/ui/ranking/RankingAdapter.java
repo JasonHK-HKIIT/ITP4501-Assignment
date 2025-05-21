@@ -9,80 +9,71 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import app.jasonhk.hkiit.mathsgame.R;
 import app.jasonhk.hkiit.mathsgame.model.RankingItem;
 
-public class RankingAdapter extends BaseAdapter
+public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder>
 {
     private Context context;
     private List<RankingItem> items;
 
-    private LayoutInflater inflater;
-
-    public RankingAdapter(Context context, List<RankingItem> items)
+    public RankingAdapter(List<RankingItem> items)
     {
-        this.context = context;
         this.items = items;
-
-        inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public int getCount()
+    public int getItemCount()
     {
         return items.size();
     }
 
+    @NonNull
     @Override
-    public Object getItem(int position)
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        return items.get(position);
+        var context = parent.getContext();
+        var view = LayoutInflater.from(context).inflate(R.layout.adapter_ranking, parent, false);
+        return new ViewHolder(context, view);
     }
 
     @Override
-    public long getItemId(int position)
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        var item = items.get(position);
-        return items.indexOf(item);
+        holder.setRankingItem(position, items.get(position));
     }
 
-    @Override
-    public View getView(int position, View view, ViewGroup container)
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        ViewHolder holder;
+        private Context context;
 
-        if (view == null)
+        private TextView rank;
+        private TextView name;
+        private TextView correctCount;
+        private TextView timeUsed;
+
+        public ViewHolder(Context context, View view)
         {
-            view = inflater.inflate(R.layout.adapter_ranking, container, false);
+            super(view);
 
-            holder = new ViewHolder();
-            holder.rank = view.findViewById(R.id.adapter_ranking_text_rank);
-            holder.name = view.findViewById(R.id.adapter_ranking_text_name);
-            holder.correctCount = view.findViewById(R.id.adapter_ranking_text_correct);
-            holder.timeUsed = view.findViewById(R.id.adapter_ranking_text_elapsed);
-            view.setTag(holder);
+            this.context = context;
+            rank = view.findViewById(R.id.adapter_ranking_text_rank);
+            name = view.findViewById(R.id.adapter_ranking_text_name);
+            correctCount = view.findViewById(R.id.adapter_ranking_text_correct);
+            timeUsed = view.findViewById(R.id.adapter_ranking_text_elapsed);
         }
-        else
+
+        public void setRankingItem(int position, RankingItem item)
         {
-            holder = (ViewHolder) view.getTag();
+            rank.setText(context.getString(R.string.adapter_ranking_text_rank, position + 1));
+            name.setText(item.name);
+            correctCount.setText(String.valueOf(item.correctCount));
+            timeUsed.setText(context.getString(R.string.adapter_ranking_text_elapsed, item.timeUsed));
         }
-
-        var item = items.get(position);
-        holder.rank.setText(context.getString(R.string.adapter_ranking_text_rank, position + 1));
-        holder.name.setText(item.name);
-        holder.correctCount.setText(String.valueOf(item.correctCount));
-        holder.timeUsed.setText(context.getString(R.string.adapter_ranking_text_elapsed, item.timeUsed));
-
-        return view;
-    }
-
-    private static class ViewHolder
-    {
-        public TextView rank;
-        public TextView name;
-        public TextView correctCount;
-        public TextView timeUsed;
     }
 }
