@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             tools:text="1."
             android:textAlignment="textEnd"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/adapter_ranking_text_name"

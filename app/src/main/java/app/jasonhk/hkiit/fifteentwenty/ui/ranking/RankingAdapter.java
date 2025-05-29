@@ -1,12 +1,9 @@
-package app.jasonhk.hkiit.mathsgame.ui.ranking;
+package app.jasonhk.hkiit.fifteentwenty.ui.ranking;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import app.jasonhk.hkiit.mathsgame.R;
-import app.jasonhk.hkiit.mathsgame.model.RankingItem;
+import app.jasonhk.hkiit.fifteentwenty.R;
+import app.jasonhk.hkiit.fifteentwenty.model.RankingItem;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder>
 {

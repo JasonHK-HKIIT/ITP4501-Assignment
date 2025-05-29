@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.ui.game;
+package app.jasonhk.hkiit.fifteentwenty.ui.game;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import app.jasonhk.hkiit.mathsgame.R;
+import app.jasonhk.hkiit.fifteentwenty.R;
 
 public class GameFragment extends Fragment
 {

@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.ui.home;
+package app.jasonhk.hkiit.fifteentwenty.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +8,13 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import app.jasonhk.hkiit.mathsgame.R;
+import app.jasonhk.hkiit.fifteentwenty.R;
 
 public class HomeFragment extends Fragment
 {
@@ -45,5 +46,25 @@ public class HomeFragment extends Fragment
 
         Button recordsButton = view.findViewById(R.id.button_records);
         recordsButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_records));
+
+        Toolbar toolbar = view.findViewById(R.id.fragment_home_toolbar);
+        toolbar.setOnMenuItemClickListener((item) ->
+        {
+            var id = item.getItemId();
+            if (id == R.id.menu_home_action_settings)
+            {
+                navigation.navigate(R.id.action_fragment_home_to_fragment_settings);
+            }
+            else if (id == R.id.menu_home_action_close)
+            {
+                requireActivity().finishAffinity();
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        });
     }
 }

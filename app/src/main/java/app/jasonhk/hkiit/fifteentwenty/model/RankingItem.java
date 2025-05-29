@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.model;
+package app.jasonhk.hkiit.fifteentwenty.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

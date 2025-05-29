@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.ui.ranking;
+package app.jasonhk.hkiit.fifteentwenty.ui.ranking;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import app.jasonhk.hkiit.mathsgame.R;
-import app.jasonhk.hkiit.mathsgame.model.RankingItem;
+import app.jasonhk.hkiit.fifteentwenty.R;
+import app.jasonhk.hkiit.fifteentwenty.model.RankingItem;
 
 public class RankingFragment extends Fragment
 {
@@ -42,18 +42,21 @@ public class RankingFragment extends Fragment
         });
 
         var ranking = new ArrayList<RankingItem>();
-        ranking.add(new RankingItem("A", 5, 5));
-        ranking.add(new RankingItem("B", 5, 5));
-        ranking.add(new RankingItem("C", 5, 5));
-        ranking.add(new RankingItem("D", 5, 5));
-        ranking.add(new RankingItem("E", 5, 5));
-        ranking.add(new RankingItem("F", 5, 5));
-        ranking.add(new RankingItem("A", 5, 5));
-        ranking.add(new RankingItem("B", 5, 5));
-        ranking.add(new RankingItem("C", 5, 5));
-        ranking.add(new RankingItem("D", 5, 5));
-        ranking.add(new RankingItem("E", 5, 5));
-        ranking.add(new RankingItem("F", 5, 5));
+        ranking.add(new RankingItem("Peter Kwong", 10, 89));
+        ranking.add(new RankingItem("John Chan", 10, 95));
+        ranking.add(new RankingItem("Mary Lam", 9, 92));
+        ranking.add(new RankingItem("David Wong", 9, 87));
+        ranking.add(new RankingItem("Alan Po", 8, 72));
+        ranking.add(new RankingItem("Peter Kwong", 10, 89));
+        ranking.add(new RankingItem("John Chan", 10, 95));
+        ranking.add(new RankingItem("Mary Lam", 9, 92));
+        ranking.add(new RankingItem("David Wong", 9, 87));
+        ranking.add(new RankingItem("Alan Po", 8, 72));
+        ranking.add(new RankingItem("Peter Kwong", 10, 89));
+        ranking.add(new RankingItem("John Chan", 10, 95));
+        ranking.add(new RankingItem("Mary Lam", 9, 92));
+        ranking.add(new RankingItem("David Wong", 9, 87));
+        ranking.add(new RankingItem("Alan Po", 8, 72));
 
         var adapter = new RankingAdapter(ranking);
 

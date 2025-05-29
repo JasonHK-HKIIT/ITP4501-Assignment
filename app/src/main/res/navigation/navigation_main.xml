@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="app.jasonhk.hkiit.mathsgame.ui.home.HomeFragment"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -26,7 +26,7 @@
     <fragment android:id="@+id/fragment_settings" />
     <fragment
         android:id="@+id/fragment_game"
-        android:name="app.jasonhk.hkiit.mathsgame.ui.game.GameFragment"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.GameFragment"
         android:label="Game"
         tools:layout="@layout/fragment_game">
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_ranking"
-        android:name="app.jasonhk.hkiit.mathsgame.ui.ranking.RankingFragment"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.ranking.RankingFragment"
         android:label="Ranking"
         tools:layout="@layout/fragment_ranking" />
     <fragment android:id="@+id/fragment_records" />

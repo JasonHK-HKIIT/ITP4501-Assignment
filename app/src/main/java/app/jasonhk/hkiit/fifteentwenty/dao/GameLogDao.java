@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.dao;
+package app.jasonhk.hkiit.fifteentwenty.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import app.jasonhk.hkiit.mathsgame.entity.GameLog;
+import app.jasonhk.hkiit.fifteentwenty.entity.GameLog;
 
 @Dao
 public interface GameLogDao

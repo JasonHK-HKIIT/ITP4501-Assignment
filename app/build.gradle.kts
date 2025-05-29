@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "app.jasonhk.hkiit.mathsgame"
+    namespace = "app.jasonhk.hkiit.fifteentwenty"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "app.jasonhk.hkiit.mathsgame"
+        applicationId = "app.jasonhk.hkiit.fifteentwenty"
         minSdk = 28
         targetSdk = 35
         versionCode = 1

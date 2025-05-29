@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame;
+package app.jasonhk.hkiit.fifteentwenty;
 
 import org.junit.Test;
 

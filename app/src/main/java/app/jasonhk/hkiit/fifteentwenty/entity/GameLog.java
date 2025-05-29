@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.mathsgame.entity;
+package app.jasonhk.hkiit.fifteentwenty.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
