@@ -33,18 +33,22 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.activity)
+    implementation(libs.appcompat)
     implementation(libs.constraintlayout)
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
-    implementation(libs.room.runtime)
     implementation(libs.jackson.core)
     implementation(libs.jackson.databind)
-    annotationProcessor(libs.room.compiler)
+    implementation(libs.material)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.okhttp)
+    implementation(libs.room.runtime)
+
     annotationProcessor(libs.jackson.annotations)
+    annotationProcessor(libs.room.compiler)
+
     testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
+
+    androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.espresso.core)
 }

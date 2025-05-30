@@ -13,8 +13,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="collapsingToolbarLayoutMediumStyle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/fragment_home_toolbar"
@@ -52,18 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="64dip"
                 android:text="@string/home_button_play"
-                android:textAllCaps="true"
                 app:icon="@drawable/ic_sports_esports_24px" />
-
-            <Button
-                android:id="@+id/button_ranking"
-                style='@style/Widget.Material3.Button.TonalButton.Icon'
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/home_button_ranking"
-                android:textAllCaps="true"
-                app:icon="@drawable/ic_leaderboard_24px" />
 
             <Button
                 android:id="@+id/button_records"
@@ -72,7 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_button_records"
-                android:textAllCaps="true"
                 app:icon="@drawable/ic_overview_24px" />
 
         </LinearLayout>

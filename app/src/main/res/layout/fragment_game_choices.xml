@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.game.choices.GameChoicesFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            style="collapsingToolbarLayoutMediumStyle"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/fragment_game_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationContentDescription="@string/game_toolbar_exit"
+                app:navigationIcon="@drawable/ic_arrow_back_24px"
+                app:title="@string/fragment_game_choices_title" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/collapsingToolbarLayoutMediumSize"
+        android:layout_marginBottom="72sp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6">
+
+            <com.google.android.material.button.MaterialButtonGroup
+                style="@style/Widget.Material3.MaterialButtonGroup.Connected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/fragment_game_choices_button_hand_left"
+                    style="@style/Theme.FifteenTwenty.Button.HandButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/fragment_game_choices_button_hand_left"
+                    app:icon="@drawable/sl_hand_left"
+                    app:iconTint="@null" />
+
+                <Button
+                    android:id="@+id/fragment_game_choices_button_hand_right"
+                    style="@style/Theme.FifteenTwenty.Button.HandButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/fragment_game_choices_button_hand_right"
+                    app:icon="@drawable/sl_hand_right"
+                    app:iconGravity="end"
+                    app:iconTint="@null" />
+
+            </com.google.android.material.button.MaterialButtonGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8">
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/fragment_game_choices_slider_guess"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:stepSize="5.0"
+                android:valueFrom="0.0"
+                android:valueTo="20.0"
+                app:labelBehavior="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fragment_game_button_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:enabled="false"
+        android:text="@string/game_button_next"
+        app:icon="@drawable/ic_check_24px" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

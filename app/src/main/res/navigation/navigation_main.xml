@@ -14,49 +14,71 @@
             android:id="@+id/action_fragment_home_to_fragment_settings"
             app:destination="@id/fragment_settings" />
         <action
-            android:id="@+id/action_fragment_home_to_fragment_game"
-            app:destination="@id/fragment_game" />
-        <action
-            android:id="@+id/action_fragment_home_to_fragment_ranking"
-            app:destination="@id/fragment_ranking" />
-        <action
             android:id="@+id/action_fragment_home_to_fragment_records"
             app:destination="@id/fragment_records" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_opponent"
+            app:destination="@id/fragment_opponent" />
     </fragment>
-    <fragment android:id="@+id/fragment_settings" />
+
     <fragment
-        android:id="@+id/fragment_game"
-        android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.GameFragment"
+        android:id="@+id/fragment_opponent"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.opponent.OpponentFragment"
+        tools:layout="@layout/fragment_opponent">
+        <action
+            android:id="@+id/action_fragment_opponent_to_fragment_game_choices"
+            app:destination="@id/fragment_game_choices"
+            app:popUpTo="@id/fragment_home" >
+            <argument
+                android:name="round"
+                android:defaultValue="1" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_game_choices"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.choices.GameChoicesFragment"
         android:label="Game"
-        tools:layout="@layout/fragment_game">
-        <action
-            android:id="@+id/action_fragment_game_self"
-            app:destination="@id/fragment_game"
-            app:popUpTo="@id/fragment_home" />
-        <action
-            android:id="@+id/action_fragment_game_to_fragment_result"
-            app:destination="@id/fragment_result"
-            app:popUpTo="@id/fragment_home" />
+        tools:layout="@layout/fragment_game_choices">
+        <argument
+            android:name="opponent"
+            app:argType="string" />
         <argument
             android:name="round"
-            android:defaultValue="1"
             app:argType="integer" />
-        <argument
-            android:name="duration"
-            android:defaultValue="0"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_ranking"
-        android:name="app.jasonhk.hkiit.fifteentwenty.ui.ranking.RankingFragment"
-        android:label="Ranking"
-        tools:layout="@layout/fragment_ranking" />
-    <fragment android:id="@+id/fragment_records" />
-    <fragment android:id="@+id/fragment_result" >
         <action
-            android:id="@+id/action_fragment_result_to_fragment_game"
-            app:destination="@id/fragment_game"
+            android:id="@+id/action_fragment_game_choices_to_fragment_game_round"
+            app:destination="@id/fragment_game_round"
             app:popUpTo="@id/fragment_home" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_game_round"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.round.GameRoundFragment"
+        tools:layout="@layout/fragment_game_round">
+        <action
+            android:id="@+id/action_fragment_game_round_to_fragment_game_choices"
+            app:destination="@id/fragment_game_choices"
+            app:popUpTo="@id/fragment_home" />
+        <argument
+            android:name="opponent"
+            app:argType="string" />
+        <argument
+            android:name="round"
+            app:argType="integer" />
+        <argument
+            android:name="player_hands"
+            app:argType="app.jasonhk.hkiit.fifteentwenty.model.Hands" />
+        <argument
+            android:name="opponent_hands"
+            app:argType="app.jasonhk.hkiit.fifteentwenty.model.Hands" />
+        <argument
+            android:name="guess"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment android:id="@+id/fragment_settings" />
+
+    <fragment android:id="@+id/fragment_records" />
 
 </navigation>

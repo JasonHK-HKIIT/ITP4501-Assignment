@@ -1,4 +1,4 @@
-package app.jasonhk.hkiit.fifteentwenty.ui.game;
+package app.jasonhk.hkiit.fifteentwenty.ui.game.round;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,13 +20,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
 
-public class GameFragment extends Fragment
+public class GameRoundFragment extends Fragment
 {
+    private String opponent;
+    private int round;
+
+    private int guess;
+
+    private boolean isPlayerRound;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_game, container, false);
+        return inflater.inflate(R.layout.fragment_game_round, container, false);
     }
 
     @Override
@@ -40,28 +47,49 @@ public class GameFragment extends Fragment
             return windowInsets;
         });
 
-        var navigation = NavHostFragment.findNavController(this);
+        var args = GameRoundFragmentArgs.fromBundle(getArguments());
+        opponent = args.getOpponent();
+        round = args.getRound();
+        guess = args.getGuess();
+        isPlayerRound = ((round % 2) != 0);
 
-        Toolbar toolbar = view.findViewById(R.id.fragment_game_toolbar);
+        Toolbar toolbar = view.findViewById(R.id.fragment_game_round_toolbar);
+        toolbar.setTitle(requireActivity().getString(R.string.fragment_game_round_title, round));
         toolbar.setNavigationOnClickListener((v) -> onBackRequested());
 
-        TextView equation = view.findViewById(R.id.fragment_game_text_equation);
-        equation.setText(getString(R.string.game_equation, 25, "+", 40));
+        TextView opponentHandsText = view.findViewById(R.id.fragment_game_round_text_hands_opponent);
+        opponentHandsText.setText(getString(R.string.fragment_game_round_hands_opponent, opponent));
 
-        Button nextButton = view.findViewById(R.id.fragment_game_button_next);
-        nextButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_game_self));
+        TextView guessText = view.findViewById(R.id.fragment_game_round_text_guess);
+        guessText.setText(isPlayerRound
+                ? getString(R.string.fragment_game_round_guess_player, String.valueOf(guess))
+                : getString(R.string.fragment_game_round_guess_opponent, opponent, String.valueOf(guess)));
+
+        Button nextRoundButton = view.findViewById(R.id.fragment_game_round_button_next);
+        nextRoundButton.setOnClickListener(this::onNextRoundButtonClicked);
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
+    public void onStart()
     {
-        super.onCreate(savedInstanceState);
+        super.onStart();
 
         requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
             @Override
             public void handleOnBackPressed() { onBackRequested(); }
         });
+    }
+
+    private void onNextRoundButtonClicked(View v)
+    {
+        var action = GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(opponent, round + 1);
+        NavHostFragment.findNavController(this).navigate(action);
+    }
+
+    private void onFinishGameRequested(View v)
+    {
+
     }
 
     private void onBackRequested()

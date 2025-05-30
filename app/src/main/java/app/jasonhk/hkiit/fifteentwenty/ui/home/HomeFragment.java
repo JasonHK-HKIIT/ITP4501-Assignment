@@ -39,10 +39,7 @@ public class HomeFragment extends Fragment
         var navigation = NavHostFragment.findNavController(this);
 
         Button playButton = view.findViewById(R.id.button_play);
-        playButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_game));
-
-        Button rankingButton = view.findViewById(R.id.button_ranking);
-        rankingButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_ranking));
+        playButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_opponent));
 
         Button recordsButton = view.findViewById(R.id.button_records);
         recordsButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_records));
