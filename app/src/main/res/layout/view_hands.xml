@@ -9,11 +9,13 @@
     tools:context=".ui.game.round.HandsView">
 
     <ImageView
+        android:id="@+id/view_hands_image_left"
         android:layout_width="128dp"
         android:layout_height="128dp"
         app:srcCompat="@drawable/ic_hand_closed_left" />
 
     <ImageView
+        android:id="@+id/view_hands_image_right"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginStart="8dp"

@@ -16,6 +16,5 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         var screen = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_fragment_screen);
-
     }
 }

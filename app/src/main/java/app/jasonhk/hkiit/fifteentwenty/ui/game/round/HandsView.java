@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,8 @@ import app.jasonhk.hkiit.fifteentwenty.model.Hands;
 public class HandsView extends LinearLayout
 {
     private final Context context;
+
+    private Hands hands = new Hands(false, false);
 
     public HandsView(Context context)
     {
@@ -44,6 +47,17 @@ public class HandsView extends LinearLayout
 
     public void setHands(@NonNull Hands hands)
     {
+        this.hands = hands;
 
+        ImageView leftImage = findViewById(R.id.view_hands_image_left);
+        leftImage.setImageResource(hands.left() ? R.drawable.ic_hand_opened_left : R.drawable.ic_hand_closed_left);
+
+        ImageView rightImage = findViewById(R.id.view_hands_image_right);
+        rightImage.setImageResource(hands.right() ? R.drawable.ic_hand_opened_right : R.drawable.ic_hand_closed_right);
+    }
+
+    public Hands getHands()
+    {
+        return hands;
     }
 }
