@@ -8,16 +8,18 @@
     tools:context=".ui.opponent.OpponentFragment">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_opponent_toolbar_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="collapsingToolbarLayoutMediumStyle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/fragment_game_toolbar"
+                android:id="@+id/fragment_opponent_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
@@ -29,5 +31,14 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ListView
+        android:id="@+id/fragment_opponent_list_opponents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/adapter_opponent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
