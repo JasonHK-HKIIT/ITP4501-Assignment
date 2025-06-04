@@ -32,6 +32,11 @@
             <argument
                 android:name="round"
                 android:defaultValue="1" />
+            <argument
+                android:name="hands"
+                android:defaultValue="@null"
+                app:argType="app.jasonhk.hkiit.fifteentwenty.model.Hands"
+                app:nullable="true" />
         </action>
     </fragment>
 
@@ -50,6 +55,10 @@
             android:id="@+id/action_fragment_game_choices_to_fragment_game_round"
             app:destination="@id/fragment_game_round"
             app:popUpTo="@id/fragment_home" />
+        <argument
+            android:name="hands"
+            app:argType="app.jasonhk.hkiit.fifteentwenty.model.Hands"
+            app:nullable="true" />
     </fragment>
 
     <fragment

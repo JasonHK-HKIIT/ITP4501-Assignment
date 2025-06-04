@@ -1,8 +1,10 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.game.choices;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,19 +36,12 @@ import okhttp3.Request;
 
 public class GameChoicesFragment extends Fragment
 {
-    private static final String IS_HAND_LEFT_CHECKED_KEY = "IS_HAND_LEFT_CHECKED_KEY";
-    private static final String IS_HAND_RIGHT_CHECKED_KEY = "IS_HAND_RIGHT_CHECKED_KEY";
+    private static final String OPPONENT_CHOICES_KEY = "OPPONENT_CHOICES_KEY";
 
     private final OkHttpClient client = new OkHttpClient();
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private String opponent;
-    private int round;
-
     private OpponentChoices opponentChoices;
-
-    private boolean isHandLeftChecked = false;
-    private boolean isHandRightChecked = false;
 
     @Nullable
     @Override
@@ -60,29 +55,54 @@ public class GameChoicesFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
+        if (savedInstanceState != null)
+        {
+            opponentChoices = savedInstanceState.getParcelable(OPPONENT_CHOICES_KEY);
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
             return windowInsets;
         });
 
+        var navigation = NavHostFragment.findNavController(this);
+
         var args = GameChoicesFragmentArgs.fromBundle(getArguments());
-        opponent = args.getOpponent();
-        round = args.getRound();
+        var opponent = args.getOpponent();
+        var round = args.getRound();
 
         Toolbar toolbar = view.findViewById(R.id.fragment_game_toolbar);
         toolbar.setTitle(requireActivity().getString(R.string.fragment_game_choices_title, round));
-        toolbar.setNavigationOnClickListener((v) -> onBackRequested());
+        toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
         MaterialButton handLeftButton = view.findViewById(R.id.fragment_game_choices_button_hand_left);
-        handLeftButton.addOnCheckedChangeListener((b, isChecked) -> isHandLeftChecked = isChecked);
-
         MaterialButton handRightButton = view.findViewById(R.id.fragment_game_choices_button_hand_right);
-        handRightButton.addOnCheckedChangeListener((b, isChecked) -> isHandRightChecked = isChecked);
+
+        var hands = args.getHands();
+        if (hands != null)
+        {
+            handLeftButton.setChecked(hands.left());
+            handRightButton.setChecked(hands.right());
+        }
 
         Button confirmButton = view.findViewById(R.id.fragment_game_button_confirm);
-        confirmButton.setOnClickListener(this::onConfirmedChoices);
+        confirmButton.setOnClickListener((v) ->
+        {
+            navigation.navigate(GameChoicesFragmentDirections.actionFragmentGameChoicesToFragmentGameRound(
+                    opponent,
+                    round,
+                    new Hands(handLeftButton.isChecked(), handRightButton.isChecked()),
+                    opponentChoices.toHands(),
+                    5));
+        });
 
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed() { onBackRequested(); }
+        });
     }
 
     @Override
@@ -90,17 +110,20 @@ public class GameChoicesFragment extends Fragment
     {
         super.onStart();
 
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
-        {
-            @Override
-            public void handleOnBackPressed() { onBackRequested(); }
-        });
-
         fetchOpponentChoices();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(OPPONENT_CHOICES_KEY, opponentChoices);
     }
 
     private void fetchOpponentChoices()
     {
+        if (opponentChoices != null) { return; }
+
         var executor = Executors.newSingleThreadExecutor();
         var handler = new Handler(Looper.getMainLooper());
 
@@ -122,6 +145,7 @@ public class GameChoicesFragment extends Fragment
                 }
 
                 opponentChoices = mapper.readValue(response.body().byteStream(), OpponentChoices.class);
+                Log.d(GameChoicesFragment.class.getName(), opponentChoices.toString());
             }
             catch (IOException e)
             {
@@ -129,6 +153,7 @@ public class GameChoicesFragment extends Fragment
                         requireContext(),
                         e.getMessage(),
                         Toast.LENGTH_LONG).show());
+                return;
             }
 
             handler.post(() ->
@@ -137,18 +162,6 @@ public class GameChoicesFragment extends Fragment
                 confirmButton.setEnabled(true);
             });
         });
-    }
-
-    private void onConfirmedChoices(@NonNull View v)
-    {
-        var action = GameChoicesFragmentDirections.actionFragmentGameChoicesToFragmentGameRound(
-                opponent,
-                round,
-                new Hands(isHandLeftChecked, isHandRightChecked),
-                opponentChoices.toHands(),
-                5);
-
-        NavHostFragment.findNavController(this).navigate(action);
     }
 
     private void onBackRequested()

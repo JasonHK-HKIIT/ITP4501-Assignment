@@ -55,7 +55,7 @@ public class GameRoundFragment extends Fragment
 
         Toolbar toolbar = view.findViewById(R.id.fragment_game_round_toolbar);
         toolbar.setTitle(requireActivity().getString(R.string.fragment_game_round_title, round));
-        toolbar.setNavigationOnClickListener((v) -> onBackRequested());
+        toolbar.setNavigationOnClickListener((v) -> onBackPressed());
 
         TextView opponentHandsText = view.findViewById(R.id.fragment_game_round_text_hands_opponent);
         opponentHandsText.setText(getString(R.string.fragment_game_round_hands_opponent, opponent));
@@ -65,25 +65,33 @@ public class GameRoundFragment extends Fragment
                 ? getString(R.string.fragment_game_round_guess_player, String.valueOf(guess))
                 : getString(R.string.fragment_game_round_guess_opponent, opponent, String.valueOf(guess)));
 
+        HandsView playerHands = view.findViewById(R.id.fragment_game_round_hands_player);
+        playerHands.setHands(args.getPlayerHands());
+
+        HandsView opponentHands = view.findViewById(R.id.fragment_game_round_hands_opponent);
+        opponentHands.setHands(args.getOpponentHands());
+
         Button nextRoundButton = view.findViewById(R.id.fragment_game_round_button_next);
         nextRoundButton.setOnClickListener(this::onNextRoundButtonClicked);
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed() { onBackPressed(); }
+        });
     }
 
     @Override
     public void onStart()
     {
         super.onStart();
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
-        {
-            @Override
-            public void handleOnBackPressed() { onBackRequested(); }
-        });
     }
 
     private void onNextRoundButtonClicked(View v)
     {
-        var action = GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(opponent, round + 1);
+        HandsView playerHands = requireView().findViewById(R.id.fragment_game_round_hands_player);
+
+        var action = GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(opponent, round + 1, playerHands.getHands());
         NavHostFragment.findNavController(this).navigate(action);
     }
 
@@ -92,7 +100,9 @@ public class GameRoundFragment extends Fragment
 
     }
 
-    private void onBackRequested()
+    private void onBackPressed(View v) { onBackPressed(); }
+
+    private void onBackPressed()
     {
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.game_exit_title)
