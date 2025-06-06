@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Fifteen Twenty</string>
+    <string name="toolbar_navigation_back">Back</string>
+    <string name="toolbar_navigation_exit">Exit</string>
     <string name="home_title">Fifteen Twenty</string>
     <string name="home_button_play">Play</string>
     <string name="home_button_ranking">Game Ranking</string>
@@ -11,7 +13,6 @@
     <string name="fragment_game_choices_button_hand_left">Left Hand</string>
     <string name="fragment_game_choices_button_hand_right">Right Hand</string>
     <string name="fragment_game_choices_toast_fetch_opponent_failed">Failed to fetch opponent’s choices: %1$s</string>
-    <string name="game_toolbar_exit">Exit to Home</string>
     <string name="game_elapsed">%1$d sec.</string>
     <string name="game_equation" translatable="false">%1$d %2$s %3$d = ?</string>
     <string name="game_input_sum">Sum</string>
@@ -19,7 +20,7 @@
     <string name="game_input_product">Product</string>
     <string name="game_input_quotient">Quotient</string>
     <string name="game_button_check">Check Answer</string>
-    <string name="game_button_next">Confirm Choices</string>
+    <string name="fragment_game_choices_button_next">Confirm Choices</string>
     <string name="game_exit_title">Confirm Exit?</string>
     <string name="game_exit_message">Do you want to return to the home page? All your progress will be lost!</string>
     <string name="game_exit_yes">Yes</string>
@@ -30,7 +31,7 @@
     <string name="fragment_game_round_guess_opponent">%1$s’s Guess: %2$s</string>
     <string name="fragment_game_round_guess_player">Your Guess: %1$s</string>
     <string name="fragment_game_round_result_win">You Win!</string>
-    <string name="fragment_game_round_result_lost">You Lost…</string>
+    <string name="fragment_game_round_result_lose">You Lose…</string>
     <string name="fragment_game_round_button_next">Next Round</string>
     <string name="fragment_game_round_button_finish">Finish Game</string>
     <string name="ranking_title">Game Ranking</string>

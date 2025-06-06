@@ -99,14 +99,14 @@ public class GameChoicesFragment extends Fragment
         opponent = args.getOpponent();
         round = args.getRound();
 
-        Toolbar toolbar = view.findViewById(R.id.fragment_game_toolbar);
+        Toolbar toolbar = view.findViewById(R.id.fragment_game_choices_toolbar);
         toolbar.setTitle(requireActivity().getString(R.string.fragment_game_choices_title, round));
         toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
         handLeftButton = view.findViewById(R.id.fragment_game_choices_button_hand_left);
         handRightButton = view.findViewById(R.id.fragment_game_choices_button_hand_right);
         guessSlider = view.findViewById(R.id.fragment_game_choices_slider_guess);
-        confirmButton = view.findViewById(R.id.fragment_game_button_confirm);
+        confirmButton = view.findViewById(R.id.fragment_game_choices_button_confirm);
 
         // Restore hands state from previous round
         var hands = args.getHands();
@@ -148,7 +148,11 @@ public class GameChoicesFragment extends Fragment
 
     private void fetchOpponentChoices()
     {
-        if (opponentChoices != null) { return; }
+        if (opponentChoices != null)
+        {
+            confirmButton.setEnabled(true);
+            return;
+        }
 
         var executor = Executors.newSingleThreadExecutor();
         var handler = new Handler(Looper.getMainLooper());
@@ -179,10 +183,7 @@ public class GameChoicesFragment extends Fragment
                 return;
             }
 
-            handler.post(() ->
-            {
-                confirmButton.setEnabled(true);
-            });
+            handler.post(() -> confirmButton.setEnabled(true));
         });
     }
 

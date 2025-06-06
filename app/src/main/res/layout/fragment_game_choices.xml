@@ -17,13 +17,13 @@
             android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/fragment_game_toolbar"
+                android:id="@+id/fragment_game_choices_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
                 app:layout_collapseMode="pin"
-                app:navigationContentDescription="@string/game_toolbar_exit"
-                app:navigationIcon="@drawable/ic_arrow_back_24px"
+                app:navigationContentDescription="@string/toolbar_navigation_exit"
+                app:navigationIcon="@drawable/ic_close_24px"
                 app:title="@string/fragment_game_choices_title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -105,13 +105,14 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fragment_game_button_confirm"
+        android:id="@+id/fragment_game_choices_button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:enabled="false"
-        android:text="@string/game_button_next"
-        app:icon="@drawable/ic_check_24px" />
+        android:text="@string/fragment_game_choices_button_next"
+        app:icon="@drawable/ic_check_24px"
+        tools:enabled="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

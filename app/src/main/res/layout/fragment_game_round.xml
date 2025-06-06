@@ -22,8 +22,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
                 app:layout_collapseMode="pin"
-                app:navigationContentDescription="@string/game_toolbar_exit"
-                app:navigationIcon="@drawable/ic_arrow_back_24px"
+                app:navigationContentDescription="@string/toolbar_navigation_exit"
+                app:navigationIcon="@drawable/ic_close_24px"
                 app:title="@string/fragment_game_round_title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -161,6 +161,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:enabled="false"
         android:text="@string/fragment_game_round_button_finish"
         android:visibility="gone"
         app:icon="@drawable/ic_sports_score_24px" />
