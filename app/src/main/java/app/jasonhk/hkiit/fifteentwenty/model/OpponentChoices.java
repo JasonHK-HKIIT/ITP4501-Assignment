@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@SuppressWarnings("unused")
 public class OpponentChoices implements Parcelable
 {
     public static final Creator<OpponentChoices> CREATOR = new Creator<>()
@@ -33,7 +34,6 @@ public class OpponentChoices implements Parcelable
     @JsonProperty("guess")
     private int guess;
 
-    @SuppressWarnings("unused")
     public OpponentChoices() {}
 
     protected OpponentChoices(Parcel in)
@@ -41,6 +41,36 @@ public class OpponentChoices implements Parcelable
         handLeft = in.readInt();
         handRight = in.readInt();
         guess = in.readInt();
+    }
+
+    public int getHandLeft()
+    {
+        return handLeft;
+    }
+
+    public void setHandLeft(int handLeft)
+    {
+        this.handLeft = handLeft;
+    }
+
+    public int getHandRight()
+    {
+        return handRight;
+    }
+
+    public void setHandRight(int handRight)
+    {
+        this.handRight = handRight;
+    }
+
+    public int getGuess()
+    {
+        return guess;
+    }
+
+    public void setGuess(int guess)
+    {
+        this.guess = guess;
     }
 
     public Hands toHands()
