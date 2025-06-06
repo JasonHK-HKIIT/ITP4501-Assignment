@@ -26,15 +26,15 @@ import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
-import app.jasonhk.hkiit.fifteentwenty.database.SessionsDatabase;
-import app.jasonhk.hkiit.fifteentwenty.entity.GameSession;
+import app.jasonhk.hkiit.fifteentwenty.database.RecordsDatabase;
+import app.jasonhk.hkiit.fifteentwenty.entity.GameRecord;
 import app.jasonhk.hkiit.fifteentwenty.model.Side;
 
 public class GameRoundFragment extends Fragment
 {
-    private static final String SESSION_ID_KEY = "SESSION_ID_KEY";
+    private static final String RECORD_ID_KEY = "RECORD_ID_KEY";
 
-    private SessionsDatabase database;
+    private RecordsDatabase database;
 
     private NavController navigation;
 
@@ -45,9 +45,16 @@ public class GameRoundFragment extends Fragment
     private String opponent;
     private int round;
 
+    /**
+     * {@code true} when the game was finished.
+     */
     private boolean isGameFinished = false;
 
-    private long sessionId = GameSession.NO_SESSION;
+    /**
+     * If {@link #isGameFinished} is {@code true}, the fragment will save a record of the game
+     * result and store the record ID here to ensure no duplicated game records.
+     **/
+    private long recordId = GameRecord.NO_RECORD;
 
     @Nullable
     @Override
@@ -63,10 +70,10 @@ public class GameRoundFragment extends Fragment
 
         if (savedInstanceState != null)
         {
-            sessionId = savedInstanceState.getLong(SESSION_ID_KEY);
+            recordId = savedInstanceState.getLong(RECORD_ID_KEY);
         }
 
-        database = Room.databaseBuilder(requireContext(), SessionsDatabase.class, SessionsDatabase.FILENAME).build();
+        database = Room.databaseBuilder(requireContext(), RecordsDatabase.class, RecordsDatabase.FILENAME).build();
 
         navigation = NavHostFragment.findNavController(this);
 
@@ -116,7 +123,7 @@ public class GameRoundFragment extends Fragment
             nextButton.setVisibility(View.GONE);
             finishButton.setVisibility(View.VISIBLE);
 
-            saveGameSession();
+            saveGameRecord();
         }
         else
         {
@@ -141,12 +148,12 @@ public class GameRoundFragment extends Fragment
     public void onSaveInstanceState(@NonNull Bundle outState)
     {
         super.onSaveInstanceState(outState);
-        outState.putLong(SESSION_ID_KEY, sessionId);
+        outState.putLong(RECORD_ID_KEY, recordId);
     }
 
-    private void saveGameSession()
+    private void saveGameRecord()
     {
-        if (sessionId != GameSession.NO_SESSION)
+        if (recordId != GameRecord.NO_RECORD)
         {
             finishButton.setEnabled(true);
             return;
@@ -157,14 +164,14 @@ public class GameRoundFragment extends Fragment
 
         executor.execute(() ->
         {
-            var session = new GameSession();
-            session.timestamp = LocalDateTime.now();
-            session.opponent = opponent;
-            session.rounds = round;
-            session.isPlayerWon = (Side.fromRound(round) == Side.PLAYER);
+            var record = new GameRecord();
+            record.timestamp = LocalDateTime.now();
+            record.opponent = opponent;
+            record.rounds = round;
+            record.isPlayerWon = (Side.fromRound(round) == Side.PLAYER);
 
-            database.gameSessionDao().insertAll(session);
-            sessionId = session.id;
+            database.gameRecordDao().insertAll(record);
+            recordId = record.id;
 
             handler.post(() -> finishButton.setEnabled(true));
         });
@@ -172,10 +179,8 @@ public class GameRoundFragment extends Fragment
 
     private void onNextButtonClick(View v)
     {
-        HandsView playerHands = requireView().findViewById(R.id.fragment_game_round_hands_player);
-
         navigation.navigate(GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(
-                opponent, round + 1, playerHands.getHands()));
+                opponent, round + 1, playerHandsDisplay.getHands()));
     }
 
     private void onFinishButtonClick(View v)

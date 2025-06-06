@@ -6,13 +6,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "GameSession")
-public class GameSession
+@Entity(tableName = "GameRecord")
+public class GameRecord
 {
-    public static final long NO_SESSION = -1;
+    public static final long NO_RECORD = -1;
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "session_id")
+    @ColumnInfo(name = "record_id")
     public long id;
 
     @ColumnInfo(name = "timestamp")
