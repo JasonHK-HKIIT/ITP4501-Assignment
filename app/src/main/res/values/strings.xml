@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Fifteen Twenty</string>
-    <string name="toolbar_navigation_back">Back</string>
-    <string name="toolbar_navigation_exit">Exit</string>
     <string name="home_title">Fifteen Twenty</string>
     <string name="home_button_play">Play</string>
     <string name="home_button_ranking">Game Ranking</string>
@@ -12,7 +10,8 @@
     <string name="fragment_game_choices_title">Choices for Round %1$d</string>
     <string name="fragment_game_choices_button_hand_left">Left Hand</string>
     <string name="fragment_game_choices_button_hand_right">Right Hand</string>
-    <string name="fragment_game_choices_toast_fetch_opponent_failed">Failed to fetch opponent’s choices: %1$s</string>
+    <string name="fragment_game_choices_error_unknown_host">Unable to connect to the server.</string>
+    <string name="fragment_game_choices_error_databind">Received malformed data from server.</string>
     <string name="game_elapsed">%1$d sec.</string>
     <string name="game_equation" translatable="false">%1$d %2$s %3$d = ?</string>
     <string name="game_input_sum">Sum</string>
@@ -38,4 +37,7 @@
     <string name="ranking_toolbar_back">Back</string>
     <string name="adapter_ranking_text_rank">%1$d.</string>
     <string name="adapter_ranking_text_elapsed">%1$d sec.</string>
+    <string name="toolbar_navigation_back">Back</string>
+    <string name="toolbar_navigation_exit">Exit</string>
+    <string name="snackbar_action_retry">Retry</string>
 </resources>

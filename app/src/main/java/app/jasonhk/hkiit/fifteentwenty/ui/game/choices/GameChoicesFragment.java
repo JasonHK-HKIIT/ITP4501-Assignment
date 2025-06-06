@@ -1,6 +1,7 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.game.choices;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -8,10 +9,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -23,11 +24,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.slider.Slider;
+import com.google.android.material.snackbar.Snackbar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -167,19 +170,46 @@ public class GameChoicesFragment extends Fragment
             {
                 if (!response.isSuccessful())
                 {
-                    handler.post(() -> Toast.makeText(
-                            requireContext(),
-                            getString(R.string.fragment_game_choices_toast_fetch_opponent_failed, response.message()),
-                            Toast.LENGTH_LONG).show());
+                    handler.post(() -> Snackbar.make(
+                                    requireView(),
+                                    response.message(),
+                                    Snackbar.LENGTH_INDEFINITE)
+                            .setAction(R.string.snackbar_action_retry, (v) -> fetchOpponentChoices())
+                            .show());
                     return;
                 }
 
                 opponentChoices = mapper.readValue(response.body().byteStream(), OpponentChoices.class);
             }
+            catch (UnknownHostException ex)
+            {
+                handler.post(() -> Snackbar.make(
+                                requireView(),
+                                R.string.fragment_game_choices_error_unknown_host,
+                                Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.snackbar_action_retry, (v) -> fetchOpponentChoices())
+                        .show());
+                return;
+            }
+            catch (DatabindException ex)
+            {
+                handler.post(() -> Snackbar.make(
+                                requireView(),
+                                R.string.fragment_game_choices_error_databind,
+                                Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.snackbar_action_retry, (v) -> fetchOpponentChoices())
+                        .show());
+                return;
+            }
             catch (IOException ex)
             {
-                handler.post(() -> Toast.makeText(
-                        requireContext(), ex.getMessage(), Toast.LENGTH_LONG).show());
+                Log.e(GameChoicesFragment.class.getName(), ex.toString());
+                handler.post(() -> Snackbar.make(
+                                requireView(),
+                                String.valueOf(ex.getMessage()),
+                                Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.snackbar_action_retry, (v) -> fetchOpponentChoices())
+                        .show());
                 return;
             }
 
