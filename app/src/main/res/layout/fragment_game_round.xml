@@ -55,6 +55,7 @@
                     android:id="@+id/fragment_game_round_text_hands_opponent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:text="@string/fragment_game_round_hands_opponent"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
@@ -88,6 +89,7 @@
                     android:id="@+id/fragment_game_round_text_guess"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:textAppearance="?attr/textAppearanceTitleLarge"
                     tools:text="@string/fragment_game_round_guess_player" />
@@ -97,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:textAppearance="?attr/textAppearanceDisplaySmall"
                     android:textStyle="bold"
@@ -131,6 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:text="@string/fragment_game_round_hands_player"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
