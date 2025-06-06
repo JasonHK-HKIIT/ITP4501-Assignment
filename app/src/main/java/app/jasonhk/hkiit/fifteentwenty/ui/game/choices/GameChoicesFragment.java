@@ -1,14 +1,16 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.game.choices;
 
-import android.os.Build;
+import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -18,29 +20,57 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.slider.Slider;
 
-import java.io.DataInput;
-import java.io.IOException;
-import java.util.concurrent.Executors;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
 import app.jasonhk.hkiit.fifteentwenty.model.Hands;
 import app.jasonhk.hkiit.fifteentwenty.model.OpponentChoices;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import app.jasonhk.hkiit.fifteentwenty.model.Side;
 
 public class GameChoicesFragment extends Fragment
 {
     private static final String OPPONENT_CHOICES_KEY = "OPPONENT_CHOICES_KEY";
 
-    private final OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build();
+
     private final ObjectMapper mapper = new ObjectMapper();
 
+    private NavController navigation;
+
+    private MaterialButton handLeftButton;
+    private MaterialButton handRightButton;
+
+    private Slider guessSlider;
+
+    private MaterialButton confirmButton;
+
+    /**
+     * The opponent's name.
+     */
+    private String opponent;
+
+    /**
+     * The current game round.
+     */
+    private int round;
+
+    /**
+     * The opponent's choices.
+     */
     private OpponentChoices opponentChoices;
 
     @Nullable
@@ -50,35 +80,35 @@ public class GameChoicesFragment extends Fragment
         return inflater.inflate(R.layout.fragment_game_choices, container, false);
     }
 
+    @SuppressLint("WrongViewCast")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
 
+        // Restore opponent choices (if exist)
         if (savedInstanceState != null)
         {
             opponentChoices = savedInstanceState.getParcelable(OPPONENT_CHOICES_KEY);
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
-            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-            return windowInsets;
-        });
+        navigation = NavHostFragment.findNavController(this);
 
-        var navigation = NavHostFragment.findNavController(this);
-
+        // Retrieve game states
         var args = GameChoicesFragmentArgs.fromBundle(getArguments());
-        var opponent = args.getOpponent();
-        var round = args.getRound();
+        opponent = args.getOpponent();
+        round = args.getRound();
 
         Toolbar toolbar = view.findViewById(R.id.fragment_game_toolbar);
         toolbar.setTitle(requireActivity().getString(R.string.fragment_game_choices_title, round));
         toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
-        MaterialButton handLeftButton = view.findViewById(R.id.fragment_game_choices_button_hand_left);
-        MaterialButton handRightButton = view.findViewById(R.id.fragment_game_choices_button_hand_right);
+        handLeftButton = view.findViewById(R.id.fragment_game_choices_button_hand_left);
+        handRightButton = view.findViewById(R.id.fragment_game_choices_button_hand_right);
+        guessSlider = view.findViewById(R.id.fragment_game_choices_slider_guess);
+        confirmButton = view.findViewById(R.id.fragment_game_button_confirm);
 
+        // Restore hands state from previous round
         var hands = args.getHands();
         if (hands != null)
         {
@@ -86,17 +116,14 @@ public class GameChoicesFragment extends Fragment
             handRightButton.setChecked(hands.right());
         }
 
-        Button confirmButton = view.findViewById(R.id.fragment_game_button_confirm);
-        confirmButton.setOnClickListener((v) ->
-        {
-            navigation.navigate(GameChoicesFragmentDirections.actionFragmentGameChoicesToFragmentGameRound(
-                    opponent,
-                    round,
-                    new Hands(handLeftButton.isChecked(), handRightButton.isChecked()),
-                    opponentChoices.toHands(),
-                    5));
-        });
+        confirmButton.setOnClickListener(this::onConfirmButtonClick);
 
+        // Handle edge-to-edge display
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
+            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
+        });
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
         {
@@ -109,7 +136,6 @@ public class GameChoicesFragment extends Fragment
     public void onStart()
     {
         super.onStart();
-
         fetchOpponentChoices();
     }
 
@@ -145,23 +171,28 @@ public class GameChoicesFragment extends Fragment
                 }
 
                 opponentChoices = mapper.readValue(response.body().byteStream(), OpponentChoices.class);
-                Log.d(GameChoicesFragment.class.getName(), opponentChoices.toString());
             }
-            catch (IOException e)
+            catch (IOException ex)
             {
                 handler.post(() -> Toast.makeText(
-                        requireContext(),
-                        e.getMessage(),
-                        Toast.LENGTH_LONG).show());
+                        requireContext(), ex.getMessage(), Toast.LENGTH_LONG).show());
                 return;
             }
 
             handler.post(() ->
             {
-                Button confirmButton = requireView().findViewById(R.id.fragment_game_button_confirm);
                 confirmButton.setEnabled(true);
             });
         });
+    }
+
+    private void onConfirmButtonClick(View view)
+    {
+        var playerHands = new Hands(handLeftButton.isChecked(), handRightButton.isChecked());
+        var guess = (Side.fromRound(round) == Side.PLAYER) ? (int) guessSlider.getValue() : opponentChoices.getGuess();
+
+        navigation.navigate(GameChoicesFragmentDirections.actionFragmentGameChoicesToFragmentGameRound(
+                opponent, round, playerHands, opponentChoices.toHands(), guess));
     }
 
     private void onBackRequested()
@@ -169,7 +200,7 @@ public class GameChoicesFragment extends Fragment
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.game_exit_title)
                 .setMessage(R.string.game_exit_message)
-                .setPositiveButton(R.string.game_exit_yes, (d, w) -> NavHostFragment.findNavController(this).popBackStack())
+                .setPositiveButton(R.string.game_exit_yes, (d, w) -> NavHostFragment.findNavController(this).navigateUp())
                 .setNegativeButton(R.string.game_exit_no, (d, w) -> { })
                 .show();
     }
