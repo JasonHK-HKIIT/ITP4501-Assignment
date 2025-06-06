@@ -6,12 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
@@ -21,6 +19,7 @@ import app.jasonhk.hkiit.fifteentwenty.R;
 
 public class OpponentFragment extends Fragment
 {
+    /** List of opponents. */
     private String[] opponents;
 
     @Nullable
@@ -35,20 +34,21 @@ public class OpponentFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
+        // Retrieve opponents list
         opponents = getResources().getStringArray(R.array.opponents);
 
         ListView opponentsList = view.findViewById(R.id.fragment_opponent_list_opponents);
         opponentsList.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.adapter_opponent, opponents));
         opponentsList.setOnItemClickListener(this::onOpponentsListItemClick);
 
+        // Handle edge-to-edge display
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragment_opponent_toolbar_wrapper), (v, windowInsets) ->
         {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(insets.left, 0, insets.right, 0);
             ((ViewGroup.MarginLayoutParams) v.getLayoutParams()).topMargin = insets.top; // Fix the stupid edge-to-edge bug with CollapsingToolbarLayout.
-            return WindowInsetsCompat.CONSUMED;
+            return windowInsets;
         });
-
         ViewCompat.setOnApplyWindowInsetsListener(opponentsList, (v, windowInsets) ->
         {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
