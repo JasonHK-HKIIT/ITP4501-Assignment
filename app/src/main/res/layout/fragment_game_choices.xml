@@ -84,6 +84,7 @@
             app:dividerInsetStart="16dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_game_choices_section_guess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8">

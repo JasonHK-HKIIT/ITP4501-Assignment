@@ -119,6 +119,9 @@ public class GameChoicesFragment extends Fragment
             handRightButton.setChecked(hands.right());
         }
 
+        var guessSection = view.findViewById(R.id.fragment_game_choices_section_guess);
+        guessSection.setVisibility((Side.fromRound(round) == Side.PLAYER) ? View.VISIBLE : View.INVISIBLE);
+
         confirmButton.setOnClickListener(this::onConfirmButtonClick);
 
         // Handle edge-to-edge display
