@@ -1,10 +1,11 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.game.round;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -14,20 +15,39 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.time.LocalDateTime;
+import java.util.concurrent.Executors;
+
 import app.jasonhk.hkiit.fifteentwenty.R;
+import app.jasonhk.hkiit.fifteentwenty.database.SessionsDatabase;
+import app.jasonhk.hkiit.fifteentwenty.entity.GameSession;
+import app.jasonhk.hkiit.fifteentwenty.model.Side;
 
 public class GameRoundFragment extends Fragment
 {
+    private static final String SESSION_ID_KEY = "SESSION_ID_KEY";
+
+    private SessionsDatabase database;
+
+    private NavController navigation;
+
+    private HandsView playerHandsDisplay;
+
+    private MaterialButton finishButton;
+
     private String opponent;
     private int round;
 
-    private int guess;
+    private boolean isGameFinished = false;
 
-    private boolean isPlayerRound;
+    private long sessionId = GameSession.NO_SESSION;
 
     @Nullable
     @Override
@@ -41,17 +61,20 @@ public class GameRoundFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
-            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-            return windowInsets;
-        });
+        if (savedInstanceState != null)
+        {
+            sessionId = savedInstanceState.getLong(SESSION_ID_KEY);
+        }
+
+        database = Room.databaseBuilder(requireContext(), SessionsDatabase.class, SessionsDatabase.FILENAME).build();
+
+        navigation = NavHostFragment.findNavController(this);
 
         var args = GameRoundFragmentArgs.fromBundle(getArguments());
         opponent = args.getOpponent();
         round = args.getRound();
-        guess = args.getGuess();
-        isPlayerRound = ((round % 2) != 0);
+
+        var side = Side.fromRound(round);
 
         Toolbar toolbar = view.findViewById(R.id.fragment_game_round_toolbar);
         toolbar.setTitle(requireActivity().getString(R.string.fragment_game_round_title, round));
@@ -60,19 +83,52 @@ public class GameRoundFragment extends Fragment
         TextView opponentHandsText = view.findViewById(R.id.fragment_game_round_text_hands_opponent);
         opponentHandsText.setText(getString(R.string.fragment_game_round_hands_opponent, opponent));
 
+        var playerHands = args.getPlayerHands();
+        var opponentHands = args.getOpponentHands();
+
+        HandsView opponentHandsDisplay = view.findViewById(R.id.fragment_game_round_hands_opponent);
+        opponentHandsDisplay.setHands(opponentHands);
+        playerHandsDisplay = view.findViewById(R.id.fragment_game_round_hands_player);
+        playerHandsDisplay.setHands(playerHands);
+
+        var guess = args.getGuess();
+        var answer = playerHands.getValue() + opponentHands.getValue();
+
         TextView guessText = view.findViewById(R.id.fragment_game_round_text_guess);
-        guessText.setText(isPlayerRound
+        guessText.setText((side == Side.PLAYER)
                 ? getString(R.string.fragment_game_round_guess_player, String.valueOf(guess))
                 : getString(R.string.fragment_game_round_guess_opponent, opponent, String.valueOf(guess)));
 
-        HandsView playerHands = view.findViewById(R.id.fragment_game_round_hands_player);
-        playerHands.setHands(args.getPlayerHands());
+        MaterialButton nextButton = view.findViewById(R.id.fragment_game_round_button_next);
+        finishButton = view.findViewById(R.id.fragment_game_round_button_finish);
 
-        HandsView opponentHands = view.findViewById(R.id.fragment_game_round_hands_opponent);
-        opponentHands.setHands(args.getOpponentHands());
+        nextButton.setOnClickListener(this::onNextButtonClick);
+        finishButton.setOnClickListener(this::onFinishButtonClick);
 
-        Button nextRoundButton = view.findViewById(R.id.fragment_game_round_button_next);
-        nextRoundButton.setOnClickListener(this::onNextRoundButtonClicked);
+        if (guess == answer)
+        {
+            isGameFinished = true;
+
+            TextView resultText = view.findViewById(R.id.fragment_game_round_text_result);
+            resultText.setText((side == Side.PLAYER) ? R.string.fragment_game_round_result_win : R.string.fragment_game_round_result_lose);
+            resultText.setVisibility(View.VISIBLE);
+
+            nextButton.setVisibility(View.GONE);
+            finishButton.setVisibility(View.VISIBLE);
+
+            saveGameSession();
+        }
+        else
+        {
+            nextButton.setVisibility(View.VISIBLE);
+            finishButton.setVisibility(View.GONE);
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
+            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
+        });
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
         {
@@ -82,33 +138,68 @@ public class GameRoundFragment extends Fragment
     }
 
     @Override
-    public void onStart()
+    public void onSaveInstanceState(@NonNull Bundle outState)
     {
-        super.onStart();
+        super.onSaveInstanceState(outState);
+        outState.putLong(SESSION_ID_KEY, sessionId);
     }
 
-    private void onNextRoundButtonClicked(View v)
+    private void saveGameSession()
+    {
+        if (sessionId != GameSession.NO_SESSION)
+        {
+            finishButton.setEnabled(true);
+            return;
+        }
+
+        var executor = Executors.newSingleThreadExecutor();
+        var handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() ->
+        {
+            var session = new GameSession();
+            session.timestamp = LocalDateTime.now();
+            session.opponent = opponent;
+            session.rounds = round;
+            session.isPlayerWon = (Side.fromRound(round) == Side.PLAYER);
+
+            database.gameSessionDao().insertAll(session);
+            sessionId = session.id;
+
+            handler.post(() -> finishButton.setEnabled(true));
+        });
+    }
+
+    private void onNextButtonClick(View v)
     {
         HandsView playerHands = requireView().findViewById(R.id.fragment_game_round_hands_player);
 
-        var action = GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(opponent, round + 1, playerHands.getHands());
-        NavHostFragment.findNavController(this).navigate(action);
+        navigation.navigate(GameRoundFragmentDirections.actionFragmentGameRoundToFragmentGameChoices(
+                opponent, round + 1, playerHands.getHands()));
     }
 
-    private void onFinishGameRequested(View v)
+    private void onFinishButtonClick(View v)
     {
-
+        navigation.navigateUp();
     }
 
     private void onBackPressed(View v) { onBackPressed(); }
 
     private void onBackPressed()
     {
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.game_exit_title)
-                .setMessage(R.string.game_exit_message)
-                .setPositiveButton(R.string.game_exit_yes, (d, w) -> NavHostFragment.findNavController(this).popBackStack())
-                .setNegativeButton(R.string.game_exit_no, (d, w) -> { })
-                .show();
+
+        if (isGameFinished)
+        {
+            navigation.navigateUp();
+        }
+        else
+        {
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.game_exit_title)
+                    .setMessage(R.string.game_exit_message)
+                    .setPositiveButton(R.string.game_exit_yes, (d, w) -> NavHostFragment.findNavController(this).popBackStack())
+                    .setNegativeButton(R.string.game_exit_no, (d, w) -> { })
+                    .show();
+        }
     }
 }
