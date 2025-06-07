@@ -1,13 +1,9 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.opponent;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
 
@@ -24,7 +22,9 @@ public class OpponentFragment extends Fragment
 {
     private NavController navigation;
 
-    /** List of opponents. */
+    /**
+     * List of opponents.
+     */
     private String[] opponents;
 
     @Nullable
@@ -47,9 +47,12 @@ public class OpponentFragment extends Fragment
         Toolbar toolbar = view.findViewById(R.id.fragment_opponent_toolbar);
         toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
-        ListView opponentsList = view.findViewById(R.id.fragment_opponent_list_opponents);
-        opponentsList.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.adapter_opponent, opponents));
-        opponentsList.setOnItemClickListener(this::onOpponentsListItemClick);
+        var adapter = new OpponentAdapter(opponents);
+        adapter.setOnItemClickListener(this::onOpponentsListItemClick);
+
+        RecyclerView opponentsList = view.findViewById(R.id.fragment_opponent_list_opponents);
+        opponentsList.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        opponentsList.setAdapter(adapter);
 
         // Handle edge-to-edge display
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragment_opponent_toolbar_wrapper), (v, windowInsets) ->
@@ -66,7 +69,7 @@ public class OpponentFragment extends Fragment
         });
     }
 
-    private void onOpponentsListItemClick(AdapterView<?> parent, View view, int position, long id)
+    private void onOpponentsListItemClick(OpponentAdapter adapter, View view, int position)
     {
         navigation.navigate(OpponentFragmentDirections.actionFragmentOpponentToFragmentGameChoices(
                 opponents[position]));
