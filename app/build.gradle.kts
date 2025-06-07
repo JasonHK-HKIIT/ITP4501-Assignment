@@ -7,6 +7,10 @@ android {
     namespace = "app.jasonhk.hkiit.fifteentwenty"
     compileSdk = 35
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     defaultConfig {
         applicationId = "app.jasonhk.hkiit.fifteentwenty"
         minSdk = 28

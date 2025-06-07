@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
@@ -8,7 +9,6 @@
     <fragment
         android:id="@+id/fragment_home"
         android:name="app.jasonhk.hkiit.fifteentwenty.ui.home.HomeFragment"
-        android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_fragment_home_to_fragment_settings"
@@ -28,7 +28,7 @@
         <action
             android:id="@+id/action_fragment_opponent_to_fragment_game_choices"
             app:destination="@id/fragment_game_choices"
-            app:popUpTo="@id/fragment_home" >
+            app:popUpTo="@id/fragment_home">
             <argument
                 android:name="round"
                 android:defaultValue="1" />
@@ -43,7 +43,6 @@
     <fragment
         android:id="@+id/fragment_game_choices"
         android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.choices.GameChoicesFragment"
-        android:label="Game"
         tools:layout="@layout/fragment_game_choices">
         <argument
             android:name="opponent"
@@ -51,24 +50,20 @@
         <argument
             android:name="round"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_fragment_game_choices_to_fragment_game_round"
-            app:destination="@id/fragment_game_round"
-            app:popUpTo="@id/fragment_home" />
         <argument
             android:name="hands"
             app:argType="app.jasonhk.hkiit.fifteentwenty.model.Hands"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_fragment_game_choices_to_fragment_game_round"
+            app:destination="@id/fragment_game_round"
+            app:popUpTo="@id/fragment_home" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_game_round"
         android:name="app.jasonhk.hkiit.fifteentwenty.ui.game.round.GameRoundFragment"
         tools:layout="@layout/fragment_game_round">
-        <action
-            android:id="@+id/action_fragment_game_round_to_fragment_game_choices"
-            app:destination="@id/fragment_game_choices"
-            app:popUpTo="@id/fragment_home" />
         <argument
             android:name="opponent"
             app:argType="string" />
@@ -84,10 +79,17 @@
         <argument
             android:name="guess"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_fragment_game_round_to_fragment_game_choices"
+            app:destination="@id/fragment_game_choices"
+            app:popUpTo="@id/fragment_home" />
     </fragment>
 
-    <fragment android:id="@+id/fragment_settings" />
+    <fragment
+        android:id="@+id/fragment_records"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.records.RecordsFragment"
+        tools:layout="@layout/fragment_records" />
 
-    <fragment android:id="@+id/fragment_records" />
+    <fragment android:id="@+id/fragment_settings" />
 
 </navigation>

@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<TwoLineListItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical"
+    android:mode="twoLine"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd">
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    tools:context=".ui.records.RecordAdapter">
 
     <LinearLayout
+        android:id="@+id/adapter_record_datetime_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
+            android:layout_marginStart="-4dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_calendar_today_24px" />
 
         <TextView
@@ -31,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
+            android:adjustViewBounds="true"
             app:srcCompat="@drawable/ic_schedule_24px" />
 
         <TextView
@@ -47,7 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_below="@id/adapter_record_datetime_wrapper"
         android:text="You lost to Opponent in 5 rounds."
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:fontFamily="@font/montserrat" />
 
-</LinearLayout>
+</TwoLineListItem>
