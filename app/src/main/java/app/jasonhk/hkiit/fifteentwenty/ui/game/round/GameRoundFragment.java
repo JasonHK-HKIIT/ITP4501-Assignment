@@ -32,7 +32,7 @@ import app.jasonhk.hkiit.fifteentwenty.model.Side;
 
 public class GameRoundFragment extends Fragment
 {
-    private static final String RECORD_ID_KEY = "RECORD_ID_KEY";
+    private static final String IS_RECORD_SAVED_KEY = "IS_RECORD_SAVED_KEY";
 
     private RecordsDatabase database;
 
@@ -50,11 +50,7 @@ public class GameRoundFragment extends Fragment
      */
     private boolean isGameFinished = false;
 
-    /**
-     * If {@link #isGameFinished} is {@code true}, the fragment will save a record of the game
-     * result and store the record ID here to ensure no duplicated game records.
-     **/
-    private long recordId = GameRecord.NO_RECORD;
+    private boolean isRecordSaved = false;
 
     @Nullable
     @Override
@@ -70,7 +66,7 @@ public class GameRoundFragment extends Fragment
 
         if (savedInstanceState != null)
         {
-            recordId = savedInstanceState.getLong(RECORD_ID_KEY);
+            isRecordSaved = savedInstanceState.getBoolean(IS_RECORD_SAVED_KEY);
         }
 
         database = Room.databaseBuilder(requireContext(), RecordsDatabase.class, RecordsDatabase.FILENAME).build();
@@ -148,12 +144,12 @@ public class GameRoundFragment extends Fragment
     public void onSaveInstanceState(@NonNull Bundle outState)
     {
         super.onSaveInstanceState(outState);
-        outState.putLong(RECORD_ID_KEY, recordId);
+        outState.putBoolean(IS_RECORD_SAVED_KEY, isRecordSaved);
     }
 
     private void saveGameRecord()
     {
-        if (recordId != GameRecord.NO_RECORD)
+        if (isRecordSaved)
         {
             finishButton.setEnabled(true);
             return;
@@ -171,7 +167,7 @@ public class GameRoundFragment extends Fragment
             record.isPlayerWon = (Side.fromRound(round) == Side.PLAYER);
 
             database.gameRecordDao().insertAll(record);
-            recordId = record.id;
+            isRecordSaved = true;
 
             handler.post(() -> finishButton.setEnabled(true));
         });

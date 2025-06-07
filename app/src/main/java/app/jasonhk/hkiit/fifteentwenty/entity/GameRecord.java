@@ -9,12 +9,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "GameRecord")
 public class GameRecord
 {
-    public static final long NO_RECORD = -1;
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "record_id")
-    public long id;
-
+    @PrimaryKey()
     @ColumnInfo(name = "timestamp")
     public LocalDateTime timestamp;
 
