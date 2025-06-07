@@ -11,21 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            style="collapsingToolbarLayoutMediumStyle"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/fragment_home_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/fragment_home_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="0dp"
-                app:layout_collapseMode="pin"
-                app:menu="@menu/fragment_home_toolbar"
-                app:title="@string/home_title" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:menu="@menu/fragment_home_toolbar"
+            app:title="@string/home_title" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -33,7 +27,7 @@
         android:id="@+id/wrapper_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/collapsingToolbarLayoutMediumSize">
+        android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
             android:layout_width="wrap_content"
