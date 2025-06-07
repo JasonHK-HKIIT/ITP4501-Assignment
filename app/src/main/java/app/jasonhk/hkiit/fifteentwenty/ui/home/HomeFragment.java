@@ -2,6 +2,7 @@ package app.jasonhk.hkiit.fifteentwenty.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,12 +13,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
 
 public class HomeFragment extends Fragment
 {
+    private NavController navigation;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -30,13 +34,7 @@ public class HomeFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
-            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-            return windowInsets;
-        });
-
-        var navigation = NavHostFragment.findNavController(this);
+        navigation = NavHostFragment.findNavController(this);
 
         Button playButton = view.findViewById(R.id.button_play);
         playButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_opponent));
@@ -45,23 +43,30 @@ public class HomeFragment extends Fragment
         recordsButton.setOnClickListener((v) -> navigation.navigate(R.id.action_fragment_home_to_fragment_records));
 
         Toolbar toolbar = view.findViewById(R.id.fragment_home_toolbar);
-        toolbar.setOnMenuItemClickListener((item) ->
-        {
-            var id = item.getItemId();
-            if (id == R.id.menu_home_action_settings)
-            {
-                navigation.navigate(R.id.action_fragment_home_to_fragment_settings);
-            }
-            else if (id == R.id.menu_home_action_close)
-            {
-                requireActivity().finishAffinity();
-            }
-            else
-            {
-                return false;
-            }
+        toolbar.setOnMenuItemClickListener(this::onToolbarMenuItemClick);
 
-            return true;
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) ->
+        {
+            var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
         });
+    }
+
+    private boolean onToolbarMenuItemClick(MenuItem item)
+    {
+        var id = item.getItemId();
+        if (id == R.id.fragment_home_toolbar_menu_settings)
+        {
+            navigation.navigate(R.id.action_fragment_home_to_fragment_settings);
+            return true;
+        }
+        else if (id == R.id.fragment_home_toolbar_menu_close)
+        {
+            requireActivity().finishAffinity();
+            return true;
+        }
+
+        return false;
     }
 }

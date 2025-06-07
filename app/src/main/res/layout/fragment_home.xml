@@ -23,7 +23,7 @@
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 android:fitsSystemWindows="true"
-                app:menu="@menu/menu_home"
+                app:menu="@menu/fragment_home_toolbar"
                 app:title="@string/home_title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
