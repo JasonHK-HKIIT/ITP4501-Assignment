@@ -26,7 +26,7 @@ public class RecordsFragment extends Fragment
 {
     private RecordsDatabase database;
 
-    private RecordAdapter adapter;
+    private RecyclerView recordsList;
 
     @Nullable
     @Override
@@ -44,11 +44,9 @@ public class RecordsFragment extends Fragment
         toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
         database = Room.databaseBuilder(requireContext(), RecordsDatabase.class, RecordsDatabase.FILENAME).build();
-        adapter = new RecordAdapter();
 
-        RecyclerView recordsList = view.findViewById(R.id.fragment_records_list_records);
+        recordsList = view.findViewById(R.id.fragment_records_list_records);
         recordsList.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
-        recordsList.setAdapter(adapter);
 
         loadGameRecords();
 
@@ -75,7 +73,7 @@ public class RecordsFragment extends Fragment
         executor.execute(() ->
         {
             var records = database.gameRecordDao().getAll();
-            handler.post(() -> adapter.setRecords(records));
+            handler.post(() -> recordsList.setAdapter(new RecordAdapter(records)));
         });
     }
 }
