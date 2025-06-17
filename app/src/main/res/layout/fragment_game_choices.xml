@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/collapsingToolbarLayoutMediumSize"
-        android:layout_marginBottom="72sp"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,20 +87,37 @@
             android:id="@+id/fragment_game_choices_section_guess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="72sp"
             android:layout_weight="8">
 
-            <com.google.android.material.slider.Slider
-                android:id="@+id/fragment_game_choices_slider_guess"
-                android:layout_width="300sp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:stepSize="5.0"
-                android:valueFrom="0.0"
-                android:valueTo="20.0"
-                app:labelBehavior="visible"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/fragment_game_choices_slider_guess"
+                    android:layout_width="300sp"
+                    android:layout_height="wrap_content"
+                    android:stepSize="5.0"
+                    android:valueFrom="0.0"
+                    android:valueTo="20.0"
+                    app:labelBehavior="visible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/fragment_game_choices_text_guess"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

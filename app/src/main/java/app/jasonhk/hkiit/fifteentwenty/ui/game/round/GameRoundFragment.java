@@ -84,7 +84,7 @@ public class GameRoundFragment extends Fragment
         toolbar.setNavigationOnClickListener((v) -> onBackPressed());
 
         TextView opponentHandsText = view.findViewById(R.id.fragment_game_round_text_hands_opponent);
-        opponentHandsText.setText(getString(R.string.fragment_game_round_hands_opponent, opponent));
+        opponentHandsText.setText(getString(R.string.fragment_game_round_text_hands_opponent, opponent));
 
         var playerHands = args.getPlayerHands();
         var opponentHands = args.getOpponentHands();
@@ -99,8 +99,8 @@ public class GameRoundFragment extends Fragment
 
         TextView guessText = view.findViewById(R.id.fragment_game_round_text_guess);
         guessText.setText((side == Side.PLAYER)
-                ? getString(R.string.fragment_game_round_guess_player, String.valueOf(guess))
-                : getString(R.string.fragment_game_round_guess_opponent, opponent, String.valueOf(guess)));
+                ? getString(R.string.fragment_game_round_text_guess_player, String.valueOf(guess))
+                : getString(R.string.fragment_game_round_text_guess_opponent, opponent, String.valueOf(guess)));
 
         MaterialButton nextButton = view.findViewById(R.id.fragment_game_round_button_next);
         finishButton = view.findViewById(R.id.fragment_game_round_button_finish);
@@ -113,7 +113,7 @@ public class GameRoundFragment extends Fragment
             isGameFinished = true;
 
             TextView resultText = view.findViewById(R.id.fragment_game_round_text_result);
-            resultText.setText((side == Side.PLAYER) ? R.string.fragment_game_round_result_win : R.string.fragment_game_round_result_lose);
+            resultText.setText((side == Side.PLAYER) ? R.string.fragment_game_round_text_result_win : R.string.fragment_game_round_text_result_lose);
             resultText.setVisibility(View.VISIBLE);
 
             nextButton.setVisibility(View.GONE);

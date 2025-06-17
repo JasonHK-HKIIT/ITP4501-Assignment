@@ -58,8 +58,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/fragment_game_round_hands_opponent"
-                    android:textAppearance="?attr/textAppearanceTitleLarge" />
+                    android:text="@string/fragment_game_round_text_hands_opponent"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 <app.jasonhk.hkiit.fifteentwenty.ui.game.round.HandsView
                     android:id="@+id/fragment_game_round_hands_opponent"
@@ -93,7 +93,7 @@
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:textAppearance="?attr/textAppearanceTitleLarge"
-                    tools:text="@string/fragment_game_round_guess_player" />
+                    tools:text="@string/fragment_game_round_text_guess_player" />
 
                 <TextView
                     android:id="@+id/fragment_game_round_text_result"
@@ -104,7 +104,7 @@
                     android:textAppearance="?attr/textAppearanceDisplaySmall"
                     android:textStyle="bold"
                     android:visibility="gone"
-                    tools:text="@string/fragment_game_round_result_win"
+                    tools:text="@string/fragment_game_round_text_result_win"
                     tools:visibility="visible" />
 
             </LinearLayout>
@@ -136,8 +136,8 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/fragment_game_round_hands_player"
-                    android:textAppearance="?attr/textAppearanceTitleLarge" />
+                    android:text="@string/fragment_game_round_text_hands_player"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
 
             </LinearLayout>
 
