@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.okhttp)
+    implementation(libs.preference)
     implementation(libs.room.runtime)
 
     annotationProcessor(libs.jackson.annotations)

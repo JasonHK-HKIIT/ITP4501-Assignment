@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Appearance"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:key="language"
+            android:title="Language"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:key="theme"
+            android:title="Theme"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="dynamic_color"
+            android:summary="Use colour theme from your wallpaper"
+            android:title="Dynamic Colour"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Records"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="clear_records"
+            android:summary="Delete all saved game records"
+            android:title="Clear Records"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

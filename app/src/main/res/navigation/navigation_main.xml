@@ -90,6 +90,9 @@
         android:name="app.jasonhk.hkiit.fifteentwenty.ui.records.RecordsFragment"
         tools:layout="@layout/fragment_records" />
 
-    <fragment android:id="@+id/fragment_settings" />
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="app.jasonhk.hkiit.fifteentwenty.ui.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>
