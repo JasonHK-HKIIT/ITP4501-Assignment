@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceFragmentCompat;
@@ -21,6 +22,9 @@ public class SettingsFragment extends PreferenceFragmentCompat
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = view.findViewById(R.id.fragment_settings_toolbar);
+        toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
         // Handle edge-to-edge display
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.fragment_settings_toolbar_wrapper), (v, windowInsets) ->
