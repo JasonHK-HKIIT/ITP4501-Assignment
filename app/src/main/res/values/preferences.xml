@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="preferences_category_appearance_title">Appearance</string>
+
+    <string name="preference_language" translatable="false">language</string>
+    <string name="preference_language_title">Language</string>
+
+    <string name="preference_theme" translatable="false">theme</string>
+    <string name="preference_theme_title">Theme</string>
+    <string-array name="preference_theme_entries">
+        <item>System</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string name="preference_dynamic_color" translatable="false">dynamic_color</string>
+    <string name="preference_dynamic_color_title">Dynamic Colour</string>
+    <string name="preference_dynamic_color_summary">Use colour theme from your wallpaper</string>
+
+    <string name="preferences_category_records_title">Records</string>
+
+    <string name="preference_clear_records" translatable="false">clear_records</string>
+    <string name="preference_clear_records_title">Clear Records</string>
+    <string name="preference_clear_records_summary">Delete all saved game records</string>
+
+</resources>

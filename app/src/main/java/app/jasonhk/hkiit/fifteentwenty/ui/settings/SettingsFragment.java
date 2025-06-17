@@ -1,5 +1,7 @@
 package app.jasonhk.hkiit.fifteentwenty.ui.settings;
 
+import java.util.Objects;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,16 +10,30 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.SwitchPreferenceCompat;
-
-import com.google.android.material.color.DynamicColors;
-import com.google.android.material.color.DynamicColorsOptions;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
+import app.jasonhk.hkiit.fifteentwenty.Theme;
 
 public class SettingsFragment extends PreferenceFragmentCompat
 {
+    @SuppressWarnings("FieldCanBeLocal")
+    private String PREFERENCE_THEME;
+
+    @Override
+    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey)
+    {
+        PREFERENCE_THEME = getString(R.string.preference_theme);
+
+        setPreferencesFromResource(R.xml.preferences, rootKey);
+
+        ListPreference themePreference = Objects.requireNonNull(findPreference(PREFERENCE_THEME));
+        themePreference.setEntries(R.array.preference_theme_entries);
+        themePreference.setEntryValues(Theme.names());
+        if (themePreference.getValue() == null) { themePreference.setValueIndex(Theme.AUTO.ordinal()); }
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
@@ -39,13 +55,5 @@ public class SettingsFragment extends PreferenceFragmentCompat
             v.setPadding(insets.left, 0, insets.right, insets.bottom);
             return windowInsets;
         });
-    }
-
-    @Override
-    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey)
-    {
-        setPreferencesFromResource(R.xml.preferences, rootKey);
-
-        SwitchPreferenceCompat dynamicColorSwitch = findPreference("dynamic_color");
     }
 }

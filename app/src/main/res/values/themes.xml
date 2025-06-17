@@ -1,80 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="TextAppearance.FifteenTwenty.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
-        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.BodySmall" parent="TextAppearance.Material3.BodySmall">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="TextAppearance.FifteenTwenty.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
-        <item name="fontFamily">@font/montserrat</item>
-    </style>
-
-    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="iconPadding">0dp</item>
-        <item name="android:insetTop">0dp</item>
-        <item name="android:insetBottom">0dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
-        <item name="android:minWidth">48dp</item>
-        <item name="android:minHeight">48dp</item>
-    </style>
-
-    <style name="Preference.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
-        <item name="widgetLayout">@layout/preference_switch</item>
-    </style>
-
     <style name="Theme.FifteenTwenty" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
+        <item name="alertDialogTheme">@style/Theme.FifteenTwenty.Preference.AlertDialog</item>
+        <item name="preferenceTheme">@style/Theme.FifteenTwenty.Preference</item>
+
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
@@ -140,17 +69,90 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
-
-        <item name="preferenceTheme">@style/Theme.FifteenTwenty.PreferenceThemeOverlay</item>
     </style>
 
-    <style name="Theme.FifteenTwenty.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
+    <style name="Theme.FifteenTwenty.Preference" parent="@style/PreferenceThemeOverlay">
         <item name="android:layout">@layout/fragment_settings</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.FifteenTwenty.Body2</item>
+    </style>
+
+    <style name="Theme.FifteenTwenty.Preference.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">@drawable/dialog_background_monet</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="dialogCornerRadius">28dp</item>
     </style>
 
     <style name="Theme.FifteenTwenty.Button.HandButton" parent="Widget.Material3.Button">
         <item name="android:paddingVertical">16dp</item>
         <item name="iconSize">40dp</item>
+    </style>
+
+    <style name="Preference.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
+        <item name="widgetLayout">@layout/preference_switch</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.Body2" parent="TextAppearance.AppCompat.Body2">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/montserrat</item>
     </style>
 
 </resources>

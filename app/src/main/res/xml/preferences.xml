@@ -4,35 +4,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="Appearance"
-        app:iconSpaceReserved="false">
+        android:title="@string/preferences_category_appearance_title"
+        app:iconSpaceReserved="false"
+        android:fontFamily="@font/montserrat">
 
         <ListPreference
-            android:key="language"
-            android:title="Language"
+            android:key="@string/preference_language"
+            android:title="@string/preference_language_title"
             app:iconSpaceReserved="false" />
 
         <ListPreference
-            android:key="theme"
-            android:title="Theme"
-            app:iconSpaceReserved="false" />
+            android:key="@string/preference_theme"
+            android:title="@string/preference_theme_title"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            android:key="dynamic_color"
-            android:summary="Use colour theme from your wallpaper"
-            android:title="Dynamic Colour"
+            android:key="@string/preference_dynamic_color"
+            android:summary="@string/preference_dynamic_color_summary"
+            android:title="@string/preference_dynamic_color_title"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Records"
+        android:title="@string/preferences_category_records_title"
         app:iconSpaceReserved="false">
 
         <Preference
-            android:key="clear_records"
-            android:summary="Delete all saved game records"
-            android:title="Clear Records"
+            android:key="@string/preference_clear_records"
+            android:summary="@string/preference_clear_records_summary"
+            android:title="@string/preference_clear_records_title"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
