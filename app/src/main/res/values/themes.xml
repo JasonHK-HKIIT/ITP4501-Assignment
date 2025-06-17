@@ -1,27 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.FifteenTwenty" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-
-        <item name="textAppearanceDisplayLarge">@style/TextAppearance.FifteenTwenty.DisplayLarge</item>
-        <item name="textAppearanceDisplayMedium">@style/TextAppearance.FifteenTwenty.DisplayMedium</item>
-        <item name="textAppearanceDisplaySmall">@style/TextAppearance.FifteenTwenty.DisplaySmall</item>
-        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.FifteenTwenty.HeadlineLarge</item>
-        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.FifteenTwenty.HeadlineMedium</item>
-        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.FifteenTwenty.HeadlineSmall</item>
-        <item name="textAppearanceTitleLarge">@style/TextAppearance.FifteenTwenty.TitleLarge</item>
-        <item name="textAppearanceTitleMedium">@style/TextAppearance.FifteenTwenty.TitleMedium</item>
-        <item name="textAppearanceTitleSmall">@style/TextAppearance.FifteenTwenty.TitleSmall</item>
-        <item name="textAppearanceBodyLarge">@style/TextAppearance.FifteenTwenty.BodyLarge</item>
-        <item name="textAppearanceBodyMedium">@style/TextAppearance.FifteenTwenty.BodyMedium</item>
-        <item name="textAppearanceBodySmall">@style/TextAppearance.FifteenTwenty.BodySmall</item>
-        <item name="textAppearanceLabelLarge">@style/TextAppearance.FifteenTwenty.LabelLarge</item>
-        <item name="textAppearanceLabelMedium">@style/TextAppearance.FifteenTwenty.LabelMedium</item>
-        <item name="textAppearanceLabelSmall">@style/TextAppearance.FifteenTwenty.LabelSmall</item>
-    </style>
 
     <style name="TextAppearance.FifteenTwenty.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
         <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
@@ -30,7 +7,7 @@
     <style name="TextAppearance.FifteenTwenty.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
         <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
     </style>
-    
+
     <style name="TextAppearance.FifteenTwenty.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
         <item name="fontFamily">@font/edu_sa_beginner_semibold</item>
     </style>
@@ -93,7 +70,30 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
-    <style name="Theme.FifteenTwenty" parent="Base.Theme.FifteenTwenty">
+    <style name="Preference.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
+        <item name="widgetLayout">@layout/preference_switch</item>
+    </style>
+
+    <style name="Theme.FifteenTwenty" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.FifteenTwenty.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.FifteenTwenty.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.FifteenTwenty.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.FifteenTwenty.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.FifteenTwenty.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.FifteenTwenty.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.FifteenTwenty.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.FifteenTwenty.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.FifteenTwenty.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.FifteenTwenty.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.FifteenTwenty.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.FifteenTwenty.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.FifteenTwenty.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.FifteenTwenty.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.FifteenTwenty.LabelSmall</item>
+
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -140,10 +140,17 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+
+        <item name="preferenceTheme">@style/Theme.FifteenTwenty.PreferenceThemeOverlay</item>
+    </style>
+
+    <style name="Theme.FifteenTwenty.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
+        <item name="android:layout">@layout/fragment_settings</item>
     </style>
 
     <style name="Theme.FifteenTwenty.Button.HandButton" parent="Widget.Material3.Button">
         <item name="android:paddingVertical">16dp</item>
         <item name="iconSize">40dp</item>
     </style>
+
 </resources>
