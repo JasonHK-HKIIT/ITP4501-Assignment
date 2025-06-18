@@ -17,25 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import app.jasonhk.hkiit.fifteentwenty.R;
 import app.jasonhk.hkiit.fifteentwenty.entity.GameRecord;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder>
+public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHolder>
 {
-    private List<GameRecord> records;
+    private final List<GameRecord> records;
 
-    public RecordAdapter()
-    {
-        this(new ArrayList<>());
-    }
-
-    public RecordAdapter(List<GameRecord> records)
+    public RecordsAdapter(List<GameRecord> records)
     {
         this.records = records;
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    public void setRecords(List<GameRecord> records)
-    {
-        this.records = records;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -50,7 +38,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     {
         var context = parent.getContext();
         var view = LayoutInflater.from(context).inflate(R.layout.adapter_record, parent, false);
-        return new RecordAdapter.ViewHolder(context, view);
+        return new RecordsAdapter.ViewHolder(context, view);
     }
 
     @Override

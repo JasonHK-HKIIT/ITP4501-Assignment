@@ -47,7 +47,7 @@ public class OpponentFragment extends Fragment
         Toolbar toolbar = view.findViewById(R.id.fragment_opponent_toolbar);
         toolbar.setNavigationOnClickListener((v) -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
-        var adapter = new OpponentAdapter(opponents);
+        var adapter = new OpponentsAdapter(opponents);
         adapter.setOnItemClickListener(this::onOpponentsListItemClick);
 
         RecyclerView opponentsList = view.findViewById(R.id.fragment_opponent_list_opponents);
@@ -69,7 +69,7 @@ public class OpponentFragment extends Fragment
         });
     }
 
-    private void onOpponentsListItemClick(OpponentAdapter adapter, View view, int position)
+    private void onOpponentsListItemClick(OpponentsAdapter adapter, View view, int position)
     {
         navigation.navigate(OpponentFragmentDirections.actionFragmentOpponentToFragmentGameChoices(
                 opponents[position]));

@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import app.jasonhk.hkiit.fifteentwenty.R;
 
-public class OpponentAdapter extends RecyclerView.Adapter<OpponentAdapter.ViewHolder>
+public class OpponentsAdapter extends RecyclerView.Adapter<OpponentsAdapter.ViewHolder>
 {
-    private String[] opponents;
+    private final String[] opponents;
 
     @Nullable
     private OnItemClickListener onItemClickListener = null;
 
-    public OpponentAdapter(String[] opponents)
+    public OpponentsAdapter(String[] opponents)
     {
         this.opponents = opponents;
     }
@@ -29,7 +29,7 @@ public class OpponentAdapter extends RecyclerView.Adapter<OpponentAdapter.ViewHo
         return opponents.length;
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener)
+    public void setOnItemClickListener(@Nullable OnItemClickListener listener)
     {
         onItemClickListener = listener;
     }
@@ -58,7 +58,7 @@ public class OpponentAdapter extends RecyclerView.Adapter<OpponentAdapter.ViewHo
 
     public interface OnItemClickListener
     {
-        void onItemClick(OpponentAdapter adapter, View view, int position);
+        void onItemClick(OpponentsAdapter adapter, View view, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
