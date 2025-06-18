@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="opponents">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
-        <item>G</item>
-        <item>H</item>
-        <item>I</item>
-        <item>J</item>
-        <item>K</item>
-        <item>L</item>
-        <item>M</item>
-        <item>N</item>
-        <item>O</item>
-        <item>P</item>
+        <item>James</item>
+        <item>Mary</item>
+        <item>John</item>
+        <item>Patricia</item>
+        <item>Robert</item>
+        <item>Jennifer</item>
+        <item>Michael</item>
+        <item>Linda</item>
+        <item>William</item>
+        <item>Elizabeth</item>
+        <item>David</item>
+        <item>Barbara</item>
+        <item>Richard</item>
+        <item>Susan</item>
+        <item>Joseph</item>
+        <item>Jessica</item>
+        <item>Thomas</item>
+        <item>Sarah</item>
+        <item>Charles</item>
+        <item>Karen</item>
     </string-array>
 </resources>
