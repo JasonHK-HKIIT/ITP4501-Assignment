@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="guesses">
+        <item>收哂</item>
+        <item>五</item>
+        <item>十</item>
+        <item>十五</item>
+        <item>開哂</item>
+    </string-array>
+</resources>

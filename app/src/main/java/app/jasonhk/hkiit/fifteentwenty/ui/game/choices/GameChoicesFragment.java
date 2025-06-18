@@ -108,8 +108,6 @@ public class GameChoicesFragment extends Fragment
 
         handLeftButton = view.findViewById(R.id.fragment_game_choices_button_hand_left);
         handRightButton = view.findViewById(R.id.fragment_game_choices_button_hand_right);
-        guessSlider = view.findViewById(R.id.fragment_game_choices_slider_guess);
-        confirmButton = view.findViewById(R.id.fragment_game_choices_button_confirm);
 
         // Restore hands state from previous round
         var hands = args.getHands();
@@ -122,6 +120,10 @@ public class GameChoicesFragment extends Fragment
         var guessSection = view.findViewById(R.id.fragment_game_choices_section_guess);
         guessSection.setVisibility((Side.fromRound(round) == Side.PLAYER) ? View.VISIBLE : View.INVISIBLE);
 
+        guessSlider = view.findViewById(R.id.fragment_game_choices_slider_guess);
+        guessSlider.setLabelFormatter(new GuessLabelFormatter(getResources().getStringArray(R.array.guesses)));
+
+        confirmButton = view.findViewById(R.id.fragment_game_choices_button_confirm);
         confirmButton.setOnClickListener(this::onConfirmButtonClick);
 
         // Handle edge-to-edge display

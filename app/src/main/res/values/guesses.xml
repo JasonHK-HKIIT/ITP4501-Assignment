@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="guesses">
+        <item>Zero</item>
+        <item>Five</item>
+        <item>Ten</item>
+        <item>Fifteen</item>
+        <item>Twenty</item>
+    </string-array>
+</resources>

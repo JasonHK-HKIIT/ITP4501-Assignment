@@ -34,12 +34,13 @@ public class GameRoundFragment extends Fragment
 {
     private static final String IS_RECORD_SAVED_KEY = "IS_RECORD_SAVED_KEY";
 
+    private String[] guesses;
+
     private RecordsDatabase database;
 
     private NavController navigation;
 
     private HandsView playerHandsDisplay;
-
     private MaterialButton finishButton;
 
     private String opponent;
@@ -69,8 +70,8 @@ public class GameRoundFragment extends Fragment
             isRecordSaved = savedInstanceState.getBoolean(IS_RECORD_SAVED_KEY);
         }
 
+        guesses = getResources().getStringArray(R.array.guesses);
         database = Room.databaseBuilder(requireContext(), RecordsDatabase.class, RecordsDatabase.FILENAME).build();
-
         navigation = NavHostFragment.findNavController(this);
 
         var args = GameRoundFragmentArgs.fromBundle(getArguments());
@@ -99,8 +100,8 @@ public class GameRoundFragment extends Fragment
 
         TextView guessText = view.findViewById(R.id.fragment_game_round_text_guess);
         guessText.setText((side == Side.PLAYER)
-                ? getString(R.string.fragment_game_round_text_guess_player, String.valueOf(guess))
-                : getString(R.string.fragment_game_round_text_guess_opponent, opponent, String.valueOf(guess)));
+                ? getString(R.string.fragment_game_round_text_guess_player, getGuessText(guess))
+                : getString(R.string.fragment_game_round_text_guess_opponent, opponent, getGuessText(guess)));
 
         MaterialButton nextButton = view.findViewById(R.id.fragment_game_round_button_next);
         finishButton = view.findViewById(R.id.fragment_game_round_button_finish);
@@ -147,6 +148,11 @@ public class GameRoundFragment extends Fragment
         outState.putBoolean(IS_RECORD_SAVED_KEY, isRecordSaved);
     }
 
+    private String getGuessText(int guess)
+    {
+        return guesses[guess / guesses.length].toUpperCase();
+    }
+
     private void saveGameRecord()
     {
         if (isRecordSaved)
@@ -183,8 +189,6 @@ public class GameRoundFragment extends Fragment
     {
         navigation.navigateUp();
     }
-
-    private void onBackPressed(View v) { onBackPressed(); }
 
     private void onBackPressed()
     {
