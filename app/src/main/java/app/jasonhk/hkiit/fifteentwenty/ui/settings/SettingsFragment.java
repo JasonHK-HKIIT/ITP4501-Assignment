@@ -60,7 +60,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             v.setPadding(insets.left, insets.top, insets.right, 0);
             return windowInsets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(android.R.id.list_container), (v, windowInsets) ->
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(androidx.preference.R.id.recycler_view), (v, windowInsets) ->
         {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(insets.left, 0, insets.right, insets.bottom);
