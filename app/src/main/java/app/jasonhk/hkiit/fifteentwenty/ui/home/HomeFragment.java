@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment
         {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-            return windowInsets;
+            return WindowInsetsCompat.CONSUMED;
         });
     }
 

@@ -128,7 +128,7 @@ public class GameChoicesFragment extends Fragment
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-            return windowInsets;
+            return WindowInsetsCompat.CONSUMED;
         });
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
