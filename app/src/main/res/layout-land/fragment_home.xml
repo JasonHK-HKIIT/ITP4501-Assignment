@@ -33,6 +33,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="224dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,9 +44,14 @@
                 android:id="@+id/button_play"
                 style="@style/Widget.Material3.Button.Icon"
                 android:layout_width="match_parent"
-                android:layout_height="64dip"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:minHeight="80dip"
+                android:paddingVertical="16dp"
                 android:text="@string/fragment_home_button_play"
-                app:icon="@drawable/ic_sports_esports_24px" />
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                app:icon="@drawable/ic_sports_esports_24px"
+                app:iconSize="28dp" />
 
             <Button
                 android:id="@+id/button_records"
@@ -53,8 +59,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat"
+                android:minHeight="56dp"
+                android:paddingVertical="8dp"
                 android:text="@string/fragment_home_button_records"
-                app:icon="@drawable/ic_overview_24px" />
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                app:icon="@drawable/ic_overview_24px"
+                app:iconSize="22dp" />
 
         </LinearLayout>
 
