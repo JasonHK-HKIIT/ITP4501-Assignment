@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="preferences_category_appearance_title">外觀</string>
+
+    <string name="preference_language_title">語言</string>
+    <string name="preference_language_entries_0">系統預設</string>
+
+    <string name="preference_theme_title">主題</string>
+    <string-array name="preference_theme_entries">
+        <item>跟隨系統</item>
+        <item>明亮</item>
+        <item>黑暗</item>
+    </string-array>
+
+    <string name="preference_dynamic_color_title">動態顏色</string>
+    <string name="preference_dynamic_color_summary">使用螢幕牆紙的顏色主題</string>
+
+    <string name="preferences_category_records_title">紀錄</string>
+
+    <string name="preference_clear_records_title">清除紀錄</string>
+    <string name="preference_clear_records_summary">刪除所有儲存的遊戲紀錄</string>
+
+</resources>

@@ -25,7 +25,7 @@
                 app:layout_collapseMode="pin"
                 app:navigationContentDescription="@string/toolbar_navigation_exit"
                 app:navigationIcon="@drawable/ic_close_24px"
-                app:title="@string/fragment_game_round_title" />
+                tools:title="@string/fragment_game_round_title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -58,8 +58,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/fragment_game_round_text_hands_opponent"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    tools:text="@string/fragment_game_round_text_hands_opponent" />
 
                 <app.jasonhk.hkiit.fifteentwenty.ui.game.round.HandsView
                     android:id="@+id/fragment_game_round_hands_opponent"

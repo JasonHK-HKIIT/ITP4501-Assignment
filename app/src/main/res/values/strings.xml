@@ -1,12 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Fifteen Twenty</string>
-    <string name="home_title">Fifteen Twenty</string>
-    <string name="home_button_play">Play</string>
-    <string name="home_button_ranking">Game Ranking</string>
-    <string name="home_button_records">Game Records</string>
-    <string name="home_menu_settings">Settings</string>
-    <string name="home_menu_close">Close</string>
+
+    <string name="fragment_home_title">Fifteen Twenty</string>
+    <string name="fragment_home_button_play">Play</string>
+    <string name="fragment_home_button_records">Game Records</string>
+    <string name="fragment_home_toolbar_menu_settings">Settings</string>
+    <string name="fragment_home_toolbar_menu_close">Close</string>
+
     <string name="fragment_opponent_title">Choose an Opponent</string>
+
     <string name="fragment_game_choices_title">Choices for Round %1$d</string>
     <string name="fragment_game_choices_button_hand_left">Left Hand</string>
     <string name="fragment_game_choices_button_hand_right">Right Hand</string>
@@ -14,10 +18,7 @@
     <string name="fragment_game_choices_button_next">Confirm Choices</string>
     <string name="fragment_game_choices_error_unknown_host">Unable to connect to the server.</string>
     <string name="fragment_game_choices_error_databind">Received malformed data from server.</string>
-    <string name="game_exit_title">Confirm Exit?</string>
-    <string name="game_exit_message">Do you want to return to the home page? All your progress will be lost!</string>
-    <string name="game_exit_yes">Yes</string>
-    <string name="game_exit_no">No</string>
+
     <string name="fragment_game_round_title">Round %1$d</string>
     <string name="fragment_game_round_text_hands_opponent">%1$s’s Hands</string>
     <string name="fragment_game_round_text_hands_player">Your Hands</string>
@@ -27,12 +28,11 @@
     <string name="fragment_game_round_text_result_lose">You Lose…</string>
     <string name="fragment_game_round_button_next">Next Round</string>
     <string name="fragment_game_round_button_finish">Finish Game</string>
+
     <string name="fragment_records_title">Game Records</string>
+
     <string name="fragment_settings_title">Settings</string>
-    <string name="ranking_title">Game Ranking</string>
-    <string name="ranking_toolbar_back">Back</string>
-    <string name="adapter_ranking_text_rank">%1$d.</string>
-    <string name="adapter_ranking_text_elapsed">%1$d sec.</string>
+
     <plurals name="adapter_record_text_result_won">
         <item quantity="one">You defeated %1$s in %2$s round.</item>
         <item quantity="other">You defeated %1$s in %2$s rounds.</item>
@@ -41,7 +41,15 @@
         <item quantity="one">You lost to %1$s in %2$d round.</item>
         <item quantity="other">You lost to %1$s in %2$d rounds.</item>
     </plurals>
+
+    <string name="dialog_exit_title">Confirm Exit?</string>
+    <string name="dialog_exit_message">Do you want to return to the home page? All your progress will be lost!</string>
+    <string name="dialog_exit_action_yes">Yes</string>
+    <string name="dialog_exit_action_no">No</string>
+
     <string name="toolbar_navigation_back">Back</string>
     <string name="toolbar_navigation_exit">Exit</string>
+
     <string name="snackbar_action_retry">Retry</string>
+
 </resources>

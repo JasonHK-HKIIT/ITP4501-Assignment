@@ -196,10 +196,10 @@ public class GameRoundFragment extends Fragment
         else
         {
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(R.string.game_exit_title)
-                    .setMessage(R.string.game_exit_message)
-                    .setPositiveButton(R.string.game_exit_yes, (d, w) -> NavHostFragment.findNavController(this).popBackStack())
-                    .setNegativeButton(R.string.game_exit_no, (d, w) -> { })
+                    .setTitle(R.string.dialog_exit_title)
+                    .setMessage(R.string.dialog_exit_message)
+                    .setPositiveButton(R.string.dialog_exit_action_yes, (d, w) -> NavHostFragment.findNavController(this).popBackStack())
+                    .setNegativeButton(R.string.dialog_exit_action_no, (d, w) -> { })
                     .show();
         }
     }

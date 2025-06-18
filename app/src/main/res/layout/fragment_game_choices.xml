@@ -25,7 +25,7 @@
                 app:layout_collapseMode="pin"
                 app:navigationContentDescription="@string/toolbar_navigation_exit"
                 app:navigationIcon="@drawable/ic_close_24px"
-                app:title="@string/fragment_game_choices_title" />
+                tools:title="@string/fragment_game_choices_title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

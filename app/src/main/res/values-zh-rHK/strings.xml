@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">十五二十</string>
+
+    <string name="fragment_home_title">十五二十</string>
+    <string name="fragment_home_button_play">開始遊戲</string>
+    <string name="fragment_home_button_records">遊戲紀錄</string>
+    <string name="fragment_home_toolbar_menu_settings">設定</string>
+    <string name="fragment_home_toolbar_menu_close">離開</string>
+
+    <string name="fragment_opponent_title">選擇你的對手</string>
+
+    <string name="fragment_game_choices_title">第 %1$d 回合的選擇</string>
+    <string name="fragment_game_choices_button_hand_left">左手</string>
+    <string name="fragment_game_choices_button_hand_right">右手</string>
+    <string name="fragment_game_choices_text_guess">你的猜測</string>
+    <string name="fragment_game_choices_button_next">確認選擇</string>
+    <string name="fragment_game_choices_error_unknown_host">無法連接到伺服器。</string>
+    <string name="fragment_game_choices_error_databind">從伺服器接收到無效數據。</string>
+
+    <string name="fragment_game_round_title">第 %1$d 回合</string>
+    <string name="fragment_game_round_text_hands_opponent">%1$s 的手</string>
+    <string name="fragment_game_round_text_hands_player">你的手</string>
+    <string name="fragment_game_round_text_guess_opponent">%1$s 的猜測：%2$s</string>
+    <string name="fragment_game_round_text_guess_player">你的猜測：%1$s</string>
+    <string name="fragment_game_round_text_result_win">你贏了！</string>
+    <string name="fragment_game_round_text_result_lose">你輸了……</string>
+    <string name="fragment_game_round_button_next">下一回合</string>
+    <string name="fragment_game_round_button_finish">結束遊戲</string>
+
+    <string name="fragment_records_title">遊戲紀錄</string>
+
+    <string name="fragment_settings_title">設定</string>
+
+    <plurals name="adapter_record_text_result_won">
+        <item quantity="other">你在 %2$d 回合內打敗了 %1$s。</item>
+    </plurals>
+    <plurals name="adapter_record_text_result_lost">
+        <item quantity="other">你被 %1$s 在 %2$d 回合內打敗了。</item>
+    </plurals>
+
+    <string name="dialog_exit_title">確認離開？</string>
+    <string name="dialog_exit_message">你確定要回到主頁嗎？目前的遊戲進度將會遺失！</string>
+    <string name="dialog_exit_action_yes">是</string>
+    <string name="dialog_exit_action_no">否</string>
+
+    <string name="toolbar_navigation_back">返回</string>
+    <string name="toolbar_navigation_exit">離開</string>
+
+    <string name="snackbar_action_retry">重試</string>
+
+</resources>

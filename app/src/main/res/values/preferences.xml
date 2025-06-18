@@ -5,11 +5,23 @@
 
     <string name="preference_language" translatable="false">language</string>
     <string name="preference_language_title">Language</string>
+    <string name="preference_language_default" translatable="false">x-DEFAULT</string>
+    <string name="preference_language_entries_0">System Default</string>
+    <string-array name="preference_language_entries" translatable="false">
+        <item>@string/preference_language_entries_0</item>
+        <item>English (United Kingdom)</item>
+        <item>中文（香港）</item>
+    </string-array>
+    <string-array name="preference_language_values" translatable="false">
+        <item>x-DEFAULT</item>
+        <item>en-GB</item>
+        <item>zh-HK</item>
+    </string-array>
 
     <string name="preference_theme" translatable="false">theme</string>
     <string name="preference_theme_title">Theme</string>
     <string-array name="preference_theme_entries">
-        <item>System</item>
+        <item>Follow System</item>
         <item>Light</item>
         <item>Dark</item>
     </string-array>
