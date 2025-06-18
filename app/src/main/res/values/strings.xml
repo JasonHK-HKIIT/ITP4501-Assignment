@@ -32,6 +32,7 @@
     <string name="fragment_records_title">Game Records</string>
 
     <string name="fragment_settings_title">Settings</string>
+    <string name="fragment_settings_message_records_cleared">All game records was deleted.</string>
 
     <plurals name="adapter_record_text_result_won">
         <item quantity="one">You defeated %1$s in %2$s round.</item>
@@ -46,6 +47,11 @@
     <string name="dialog_exit_message">Do you want to return to the home page? All your progress will be lost!</string>
     <string name="dialog_exit_action_yes">Yes</string>
     <string name="dialog_exit_action_no">No</string>
+
+    <string name="dialog_clear_records_title">Warning</string>
+    <string name="dialog_clear_records_message">All saved game records will be deleted. Are you sure?</string>
+    <string name="dialog_clear_records_action_yes">Yes</string>
+    <string name="dialog_clear_records_action_no">No</string>
 
     <string name="toolbar_navigation_back">Back</string>
     <string name="toolbar_navigation_exit">Exit</string>
