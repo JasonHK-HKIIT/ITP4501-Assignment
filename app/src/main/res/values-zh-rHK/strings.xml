@@ -30,8 +30,10 @@
     <string name="fragment_game_round_button_finish">結束遊戲</string>
 
     <string name="fragment_records_title">遊戲紀錄</string>
+    <string name="fragment_records_text_no_records">沒有紀錄</string>
 
     <string name="fragment_settings_title">設定</string>
+    <string name="fragment_settings_message_records_cleared">已刪除所有遊戲紀錄。</string>
 
     <plurals name="adapter_record_text_result_won">
         <item quantity="other">你在 %2$d 回合內打敗了 %1$s。</item>
@@ -44,6 +46,11 @@
     <string name="dialog_exit_message">你確定要回到主頁嗎？目前的遊戲進度將會遺失！</string>
     <string name="dialog_exit_action_yes">是</string>
     <string name="dialog_exit_action_no">否</string>
+
+    <string name="dialog_clear_records_title">警告</string>
+    <string name="dialog_clear_records_message">所有已儲存的遊戲紀錄將會被刪除，你確定要繼續嗎？</string>
+    <string name="dialog_clear_records_action_yes">是</string>
+    <string name="dialog_clear_records_action_no">否</string>
 
     <string name="toolbar_navigation_back">返回</string>
     <string name="toolbar_navigation_exit">離開</string>
