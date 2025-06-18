@@ -66,7 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:rotation="180" />
+                    android:rotation="180"
+                    app:iconSize="128dp" />
 
             </LinearLayout>
 
@@ -128,7 +129,8 @@
                 <app.jasonhk.hkiit.fifteentwenty.ui.game.round.HandsView
                     android:id="@+id/fragment_game_round_hands_player"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:iconSize="128dp" />
 
                 <TextView
                     android:layout_width="match_parent"
