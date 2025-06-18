@@ -73,7 +73,16 @@ public class RecordsFragment extends Fragment
         executor.execute(() ->
         {
             var records = database.gameRecordDao().getAll();
-            handler.post(() -> recordsList.setAdapter(new RecordsAdapter(records)));
+            handler.post(() ->
+            {
+                if (!records.isEmpty())
+                {
+                    requireView().findViewById(R.id.fragment_records_list_records_placeholder)
+                            .setVisibility(View.GONE);
+                }
+
+                recordsList.setAdapter(new RecordsAdapter(records));
+            });
         });
     }
 }

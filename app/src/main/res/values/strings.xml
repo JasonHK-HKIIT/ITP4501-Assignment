@@ -30,6 +30,7 @@
     <string name="fragment_game_round_button_finish">Finish Game</string>
 
     <string name="fragment_records_title">Game Records</string>
+    <string name="fragment_records_text_no_records">No Records</string>
 
     <string name="fragment_settings_title">Settings</string>
     <string name="fragment_settings_message_records_cleared">All game records was deleted.</string>
