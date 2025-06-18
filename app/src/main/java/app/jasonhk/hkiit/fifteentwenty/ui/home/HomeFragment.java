@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment
             navigation.navigate(R.id.action_fragment_home_to_fragment_settings);
             return true;
         }
-        else if (id == R.id.fragment_home_toolbar_menu_close)
+        else if (id == R.id.fragment_home_toolbar_menu_exit)
         {
             requireActivity().finishAffinity();
             return true;

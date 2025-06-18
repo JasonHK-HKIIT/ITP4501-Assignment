@@ -7,7 +7,7 @@
     <string name="fragment_home_button_play">Play</string>
     <string name="fragment_home_button_records">Game Records</string>
     <string name="fragment_home_toolbar_menu_settings">Settings</string>
-    <string name="fragment_home_toolbar_menu_close">Close</string>
+    <string name="fragment_home_toolbar_menu_exit">Exit</string>
 
     <string name="fragment_opponent_title">Choose an Opponent</string>
 
