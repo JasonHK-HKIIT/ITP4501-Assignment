@@ -55,9 +55,9 @@
                 android:minHeight="80dip"
                 android:paddingVertical="16dp"
                 android:text="@string/fragment_home_button_play"
-                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
                 app:icon="@drawable/ic_sports_esports_24px"
-                app:iconSize="28dp" />
+                app:iconSize="22dp" />
 
             <Button
                 android:id="@+id/button_records"
