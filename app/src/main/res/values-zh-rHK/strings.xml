@@ -25,7 +25,7 @@
     <string name="fragment_game_round_text_guess_opponent">%1$s 的猜測：%2$s</string>
     <string name="fragment_game_round_text_guess_player">你的猜測：%1$s</string>
     <string name="fragment_game_round_text_result_win">你贏了！</string>
-    <string name="fragment_game_round_text_result_lose">你輸了……</string>
+    <string name="fragment_game_round_text_result_lose">你輸了⋯⋯</string>
     <string name="fragment_game_round_button_next">下一回合</string>
     <string name="fragment_game_round_button_finish">結束遊戲</string>
 
