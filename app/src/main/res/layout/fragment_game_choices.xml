@@ -57,21 +57,17 @@
                     style="@style/Theme.FifteenTwenty.Button.HandButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checkable="true"
                     android:text="@string/fragment_game_choices_button_hand_left"
-                    app:icon="@drawable/sl_hand_left"
-                    app:iconTint="@null" />
+                    app:icon="@drawable/sl_hand_left" />
 
                 <Button
                     android:id="@+id/fragment_game_choices_button_hand_right"
                     style="@style/Theme.FifteenTwenty.Button.HandButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checkable="true"
                     android:text="@string/fragment_game_choices_button_hand_right"
                     app:icon="@drawable/sl_hand_right"
-                    app:iconGravity="end"
-                    app:iconTint="@null" />
+                    app:iconGravity="end" />
 
             </com.google.android.material.button.MaterialButtonGroup>
 
@@ -111,8 +107,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:text="@string/fragment_game_choices_text_guess"
                     android:textAppearance="?attr/textAppearanceTitleMedium" />
@@ -125,6 +121,7 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fragment_game_choices_button_confirm"
+        style="?attr/floatingActionButtonLargeStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
