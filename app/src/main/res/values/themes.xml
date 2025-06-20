@@ -22,6 +22,7 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.FifteenTwenty.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.FifteenTwenty.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TextAppearance.FifteenTwenty.LabelSmall</item>
+        <item name="android:textAppearance">@style/TextAppearance.FifteenTwenty.Material</item>
 
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -154,6 +155,10 @@
     </style>
 
     <style name="TextAppearance.FifteenTwenty.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextAppearance.FifteenTwenty.Material" parent="android:TextAppearance.Material">
         <item name="fontFamily">@font/montserrat</item>
     </style>
 

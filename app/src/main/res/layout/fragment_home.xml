@@ -57,7 +57,7 @@
                 android:text="@string/fragment_home_button_play"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 app:icon="@drawable/ic_sports_esports_24px"
-                app:iconSize="22dp" />
+                app:iconSize="24dp" />
 
             <Button
                 android:id="@+id/button_records"
