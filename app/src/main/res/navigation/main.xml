@@ -12,13 +12,25 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_fragment_home_to_fragment_settings"
-            app:destination="@id/fragment_settings" />
+            app:destination="@id/fragment_settings"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_fragment_home_to_fragment_records"
-            app:destination="@id/fragment_records" />
+            app:destination="@id/fragment_records"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_fragment_home_to_fragment_opponent"
-            app:destination="@id/fragment_opponent" />
+            app:destination="@id/fragment_opponent"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -28,6 +40,10 @@
         <action
             android:id="@+id/action_fragment_opponent_to_fragment_game_choices"
             app:destination="@id/fragment_game_choices"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/fragment_home">
             <argument
                 android:name="round"
@@ -57,6 +73,10 @@
         <action
             android:id="@+id/action_fragment_game_choices_to_fragment_game_round"
             app:destination="@id/fragment_game_round"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/fragment_home" />
     </fragment>
 
@@ -82,6 +102,10 @@
         <action
             android:id="@+id/action_fragment_game_round_to_fragment_game_choices"
             app:destination="@id/fragment_game_choices"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/fragment_home" />
     </fragment>
 
