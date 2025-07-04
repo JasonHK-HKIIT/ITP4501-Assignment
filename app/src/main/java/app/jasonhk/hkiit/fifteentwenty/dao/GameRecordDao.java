@@ -13,7 +13,7 @@ import app.jasonhk.hkiit.fifteentwenty.entity.GameRecord;
 @SuppressWarnings("unused")
 public interface GameRecordDao
 {
-    @Query("SELECT * FROM GameRecord ORDER BY `timestamp` DESC")
+    @Query("SELECT * FROM `GameRecord` ORDER BY `timestamp` DESC")
     List<GameRecord> getAll();
 
     @Insert
@@ -22,6 +22,6 @@ public interface GameRecordDao
     @Delete
     void delete(GameRecord session);
 
-    @Query("DELETE FROM GameRecord")
+    @Query("DELETE FROM `GameRecord`")
     void deleteAll();
 }
