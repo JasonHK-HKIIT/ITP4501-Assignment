@@ -37,14 +37,14 @@ This project is an Android application developed for the ITP4501 Programming Tec
 <table>
     <tr>
         <th scope="col" width="50%">Game Choices (Opponent&rsquo;s Round)</th>
-        <th scope="col" width="50%">Game Round (End)</th>
+        <th scope="col" width="50%">Game Result</th>
     </tr>
     <tr>
         <td>
             <img src="screenshots/game-choices-opponent.png" alt="Game Choices (Opponent&rsquo;s Round)" />
         </td>
         <td>
-            <img src="screenshots/game-round-end.png" alt="Game Round (End)" />
+            <img src="screenshots/game-result.png" alt="Game Result" />
         </td>
     </tr>
 </table>
