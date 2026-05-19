@@ -168,7 +168,7 @@ public class GameChoicesFragment extends Fragment
         executor.execute(() ->
         {
             var request = new Request.Builder()
-                    .url("https://assign-mobileasignment-ihudikcgpf.cn-hongkong.fcapp.run/")
+                    .url("https://itp4501-assignment.jasonhk.workers.dev/")
                     .build();
 
             try (var response = client.newCall(request).execute())
