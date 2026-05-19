@@ -1,6 +1,6 @@
 # ITP4501 Assignment
 
-This project is an Android application developed for the ITP4501 Programming Techniques for Mobile Systems module. It implements a &ldquo;15,20&rdquo; game where players select opponents from a server, play turn-based rounds, and view their game records stored in a local database. The app is built with Android widgets and follows the assignment requirements for UI design, database handling, and server communication.
+This project is an Android application developed for the ITP4501 Programming Techniques for Mobile Systems module. It implements a &ldquo;15,20&rdquo; game where player select opponent, play turn-based rounds with opponent chooses from a server, and view their game records stored in a local database. The app is built with Android widgets and follows the assignment requirements for UI design, database handling, and server communication.
 
 ## Screenshots
 
