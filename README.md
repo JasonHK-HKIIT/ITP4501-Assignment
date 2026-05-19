@@ -6,8 +6,8 @@ This project is an Android application developed for the ITP4501 Programming Tec
 
 <table>
     <tr>
-        <th scope="col" style="width: 50%">Home</th>
-        <th scope="col" style="width: 50%">Opponent Chooser</th>
+        <th scope="col" width="50%">Home</th>
+        <th scope="col" width="50%">Opponent Chooser</th>
     </tr>
     <tr>
         <td>
@@ -21,8 +21,8 @@ This project is an Android application developed for the ITP4501 Programming Tec
 
 <table>
     <tr>
-        <th scope="col" style="width: 50%">Game Choices (Player&rsquo;s Round)</th>
-        <th scope="col" style="width: 50%">Game Round</th>
+        <th scope="col" width="50%">Game Choices (Player&rsquo;s Round)</th>
+        <th scope="col" width="50%">Game Round</th>
     </tr>
     <tr>
         <td>
@@ -36,8 +36,8 @@ This project is an Android application developed for the ITP4501 Programming Tec
 
 <table>
     <tr>
-        <th scope="col" style="width: 50%">Game Choices (Opponent&rsquo;s Round)</th>
-        <th scope="col" style="width: 50%">Game Round (End)</th>
+        <th scope="col" width="50%">Game Choices (Opponent&rsquo;s Round)</th>
+        <th scope="col" width="50%">Game Round (End)</th>
     </tr>
     <tr>
         <td>
@@ -51,8 +51,8 @@ This project is an Android application developed for the ITP4501 Programming Tec
 
 <table>
     <tr>
-        <th scope="col" style="width: 50%">Records</th>
-        <th scope="col" style="width: 50%">Settings</th>
+        <th scope="col" width="50%">Records</th>
+        <th scope="col" width="50%">Settings</th>
     </tr>
     <tr>
         <td>
